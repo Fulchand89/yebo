@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { YeboLogo } from '@/components/YeboLogo';
 import { Footer } from '@/components/common/Footer';
 
@@ -18,27 +19,24 @@ export function SubmittedHeader() {
             </div>
           </div>
 
-          {/* Right: Back to YEBO PERKS + Support */}
-          <div className="flex items-center gap-3 sm:gap-5 text-xs sm:text-sm font-semibold">
+          {/* Right: Login Button + Back to YEBO PERKS + Support */}
+          <div className="flex items-center gap-2.5 sm:gap-4 text-xs sm:text-sm font-semibold">
+            <Link
+              to="/login"
+              className="flex items-center gap-1.5 bg-[#ea580c] hover:bg-[#c2410c] text-white px-3 sm:px-4 py-1.5 rounded-xl font-bold transition shadow-xs cursor-pointer text-xs"
+            >
+              <span>Login</span>
+              <span>→</span>
+            </Link>
             <a
               href="/"
-              className="flex items-center gap-1.5 text-slate-800 hover:text-orange-600 transition"
+              className="hidden sm:flex items-center gap-1.5 text-slate-800 hover:text-orange-600 transition"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
               </svg>
-              <span className="hidden sm:inline">Back to YEBO PERKS</span>
-              <span className="sm:hidden">Back</span>
+              <span>Back to YEBO PERKS</span>
             </a>
-            <button
-              type="button"
-              className="flex items-center gap-1.5 text-slate-800 hover:text-orange-600 transition cursor-pointer"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
-              </svg>
-              <span>Support</span>
-            </button>
           </div>
         </div>
       </div>
@@ -162,11 +160,19 @@ export default function RegistrationSubmittedPage({ details = {} }) {
           </div>
         </div>
 
-        {/* Bottom Back Button */}
-        <div className="mt-8 flex justify-center w-full">
+        {/* Bottom Action Buttons */}
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full">
+          <Link
+            to="/login"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#ea580c] hover:bg-[#c2410c] text-white font-black text-xs sm:text-sm tracking-wider uppercase px-8 py-3.5 rounded-xl shadow-lg shadow-orange-500/25 transition cursor-pointer"
+          >
+            <span>LOGIN TO YOUR ACCOUNT</span>
+            <span>→</span>
+          </Link>
+
           <a
             href="/"
-            className="inline-flex items-center justify-center gap-2.5 bg-[#0c1844] hover:bg-[#071030] text-white font-black text-xs sm:text-sm tracking-wider uppercase px-8 py-3.5 rounded-xl shadow-md transition cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#0c1844] hover:bg-[#071030] text-white font-black text-xs sm:text-sm tracking-wider uppercase px-8 py-3.5 rounded-xl shadow-md transition cursor-pointer"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />

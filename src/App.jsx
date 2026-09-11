@@ -14,6 +14,7 @@ import MerchantFlashMegaphonePage from '@/pages/MerchantFlashMegaphonePage';
 import MerchantBusinessProfilePage from '@/pages/MerchantBusinessProfilePage';
 import RegisterPage from '@/pages/RegisterPage';
 import RegistrationSubmittedPage from '@/pages/RegistrationSubmittedPage';
+import LoginPage from '@/pages/LoginPage';
 
 // Helper component to scroll to top on router path changes
 function ScrollToTop() {
@@ -63,6 +64,9 @@ export default function App() {
     <>
       <ScrollToTop />
       <Routes>
+        {/* /login → Login page */}
+        <Route path="/login" element={<LoginPage />} />
+
         {/* /register → Registration page */}
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/registration-submitted" element={<RegistrationSubmittedPage />} />
