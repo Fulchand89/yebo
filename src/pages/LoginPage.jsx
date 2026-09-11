@@ -3,10 +3,10 @@ import { useNavigate, Link } from 'react-router-dom';
 import { YeboLogo } from '@/components/YeboLogo';
 import login3dCartImg from '@/assets/login_3d_cart.jpg';
 
-// ─── Custom Icons matching the design ─────────────────────────────────────────
+// ─── Custom Feature Icons ───────────────────────────────────────────────────
 function TagIcon({ className = 'w-5 h-5' }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 2H2v10l11.29 11.29a1 1 0 0 0 1.41 0l7.3-7.3a1 1 0 0 0 0-1.41L12 2z" />
       <path d="M7 7h.01" />
     </svg>
@@ -15,7 +15,7 @@ function TagIcon({ className = 'w-5 h-5' }) {
 
 function StarIcon({ className = 'w-5 h-5' }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
       <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
     </svg>
   );
@@ -23,7 +23,7 @@ function StarIcon({ className = 'w-5 h-5' }) {
 
 function BagIcon({ className = 'w-5 h-5' }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
       <line x1="3" y1="6" x2="21" y2="6" />
       <path d="M16 10a4 4 0 0 1-8 0" />
@@ -69,18 +69,7 @@ function EyeOffIcon({ className = 'w-4 h-4' }) {
   );
 }
 
-// ─── Dot Matrix Pattern ───────────────────────────────────────────────────────
-function DotGridPattern({ className = "" }) {
-  return (
-    <div className={`grid grid-cols-4 gap-2 opacity-35 ${className}`}>
-      {Array.from({ length: 16 }).map((_, i) => (
-        <span key={i} className="w-1.5 h-1.5 rounded-full bg-[#d6ad88]" />
-      ))}
-    </div>
-  );
-}
-
-// ─── Social Login Buttons Icons ──────────────────────────────────────────────
+// ─── Social Icons ────────────────────────────────────────────────────────────
 function GoogleIcon({ className = 'w-4 h-4' }) {
   return (
     <svg className={className} viewBox="0 0 24 24">
@@ -117,121 +106,119 @@ export function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Navigate to Merchant Dashboard
     navigate('/');
   };
 
   return (
-    <div className="min-h-screen bg-[#fff8f2] flex flex-col items-center justify-center font-sans relative overflow-hidden p-4 sm:p-6 md:p-8">
-      {/* Soft Decorative Ambient Glows */}
-      <div className="absolute -top-20 -right-20 w-[500px] h-[500px] rounded-full bg-[#fde5d2]/40 blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-24 -left-24 w-[600px] h-[600px] rounded-full bg-[#fed7aa]/30 blur-3xl pointer-events-none" />
+    <div className="min-h-screen w-full bg-[#fffcf7] flex flex-col items-center justify-center font-sans relative overflow-hidden p-4 sm:p-6 lg:p-10">
+      
+      {/* Soft Ambient Background Glows */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-radial from-[#ffeada]/60 to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[650px] h-[650px] rounded-full bg-radial from-[#ffe4d0]/50 to-transparent blur-3xl pointer-events-none" />
 
-      {/* Decorative Dot Matrix Patterns */}
-      <DotGridPattern className="absolute top-10 left-10 hidden sm:grid" />
-      <DotGridPattern className="absolute bottom-16 right-10 hidden sm:grid" />
-
-      {/* Main Container */}
+      {/* Main Grid Wrapper */}
       <div className="max-w-6xl w-full mx-auto my-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
-          {/* ─── LEFT COLUMN: HERO HEADING, FEATURES & 3D CART ─── */}
-          <div className="lg:col-span-6 space-y-6 text-left pr-0 lg:pr-4">
+          {/* ─── LEFT SIDE CONTENT ─── */}
+          <div className="lg:col-span-6 space-y-4 sm:space-y-5 text-left pr-0 lg:pr-6">
             
             {/* Welcome Back Badge */}
             <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#fff5ec] border border-[#fdba74] text-[#ea580c] text-xs font-semibold tracking-wide select-none shadow-2xs">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#fff2e8] border border-[#ffca99]/80 text-[#ea580c] text-xs font-semibold select-none shadow-2xs">
                 <span className="text-xs">🔒</span>
                 <span>Welcome Back</span>
               </div>
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0f172a] leading-[1.15]">
+            {/* Headline */}
+            <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold tracking-tight text-[#0f172a] leading-[1.16]">
               Your Favorite Deals <br />
-              <span className="text-[#ea580c]">
+              <span className="text-[#f97316]">
                 Are Just a Login Away!
               </span>
             </h1>
 
             {/* Subtext */}
-            <p className="text-xs sm:text-sm text-slate-500 font-medium leading-relaxed max-w-md">
+            <p className="text-xs sm:text-sm text-slate-500 font-normal leading-relaxed max-w-md">
               Access your account to explore exclusive offers, manage your rewards and enjoy a better shopping experience with Yebo Perks.
             </p>
 
-            {/* 3 Feature Circles in 1 Row with Vertical Dividers */}
-            <div className="flex items-center gap-4 sm:gap-6 pt-2 select-none">
+            {/* Feature Badges Row */}
+            <div className="flex items-center gap-3 sm:gap-5 pt-1 select-none">
+              
               {/* Feature 1 */}
-              <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-full bg-[#fff0e5] flex items-center justify-center text-[#ea580c] shrink-0">
-                  <TagIcon className="w-5 h-5 text-[#ea580c]" />
+              <div className="flex items-center gap-2.5">
+                <div className="w-10 h-10 rounded-full bg-[#ffefe5] flex items-center justify-center text-[#ea580c] shrink-0">
+                  <TagIcon className="w-4.5 h-4.5 text-[#ea580c]" />
                 </div>
                 <div>
-                  <p className="text-xs font-extrabold text-[#0f172a] leading-tight">Exclusive</p>
-                  <p className="text-xs font-extrabold text-[#0f172a] leading-tight">Deals</p>
+                  <p className="text-[11px] sm:text-xs font-bold text-[#0f172a] leading-tight">Exclusive</p>
+                  <p className="text-[11px] sm:text-xs font-bold text-[#0f172a] leading-tight">Deals</p>
                 </div>
               </div>
 
-              {/* Vertical Divider 1 */}
-              <div className="h-9 w-px bg-slate-200/80" />
+              {/* Line Divider */}
+              <div className="h-8 w-px bg-slate-200/90" />
 
               {/* Feature 2 */}
-              <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-full bg-[#fff0e5] flex items-center justify-center text-[#ea580c] shrink-0">
-                  <StarIcon className="w-5 h-5 text-[#ea580c]" />
+              <div className="flex items-center gap-2.5">
+                <div className="w-10 h-10 rounded-full bg-[#ffefe5] flex items-center justify-center text-[#ea580c] shrink-0">
+                  <StarIcon className="w-4.5 h-4.5 text-[#ea580c]" />
                 </div>
                 <div>
-                  <p className="text-xs font-extrabold text-[#0f172a] leading-tight">Earn</p>
-                  <p className="text-xs font-extrabold text-[#0f172a] leading-tight">Rewards</p>
+                  <p className="text-[11px] sm:text-xs font-bold text-[#0f172a] leading-tight">Earn</p>
+                  <p className="text-[11px] sm:text-xs font-bold text-[#0f172a] leading-tight">Rewards</p>
                 </div>
               </div>
 
-              {/* Vertical Divider 2 */}
-              <div className="h-9 w-px bg-slate-200/80" />
+              {/* Line Divider */}
+              <div className="h-8 w-px bg-slate-200/90" />
 
               {/* Feature 3 */}
-              <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-full bg-[#fff0e5] flex items-center justify-center text-[#ea580c] shrink-0">
-                  <BagIcon className="w-5 h-5 text-[#ea580c]" />
+              <div className="flex items-center gap-2.5">
+                <div className="w-10 h-10 rounded-full bg-[#ffefe5] flex items-center justify-center text-[#ea580c] shrink-0">
+                  <BagIcon className="w-4.5 h-4.5 text-[#ea580c]" />
                 </div>
                 <div>
-                  <p className="text-xs font-extrabold text-[#0f172a] leading-tight">Shop</p>
-                  <p className="text-xs font-extrabold text-[#0f172a] leading-tight">Smarter</p>
+                  <p className="text-[11px] sm:text-xs font-bold text-[#0f172a] leading-tight">Shop</p>
+                  <p className="text-[11px] sm:text-xs font-bold text-[#0f172a] leading-tight">Smarter</p>
                 </div>
               </div>
             </div>
 
-            {/* 3D Shopping Cart Graphic */}
-            <div className="pt-4 flex justify-center lg:justify-start select-none">
+            {/* 3D Shopping Cart Graphic - Proportional Compact Size */}
+            <div className="pt-2 flex justify-center lg:justify-start select-none">
               <img
                 src={login3dCartImg}
                 alt="YEBO PERKS Shopping Cart"
-                className="w-full max-w-sm sm:max-w-md h-auto object-contain drop-shadow-xl hover:scale-[1.01] transition-transform duration-300"
+                className="w-60 sm:w-72 lg:w-80 max-w-full h-auto object-contain drop-shadow-md hover:scale-[1.01] transition-transform duration-300"
               />
             </div>
           </div>
 
-          {/* ─── RIGHT COLUMN: LOGIN FORM CARD ─── */}
-          <div className="lg:col-span-6 w-full max-w-[460px] mx-auto">
-            <div className="bg-white rounded-[2.5rem] p-7 sm:p-10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.06)] border border-slate-100/90 relative">
+          {/* ─── RIGHT SIDE LOGIN CARD ─── */}
+          <div className="lg:col-span-6 w-full max-w-[480px] mx-auto">
+            <div className="bg-white rounded-[2.5rem] p-7 sm:p-10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] border border-slate-100 relative">
               
-              {/* Logo Header */}
+              {/* Card Header Logo */}
               <div className="flex flex-col items-center text-center mb-6 select-none">
                 <Link to="/">
                   <YeboLogo className="h-14 sm:h-16 w-auto" />
                 </Link>
 
-                <h2 className="text-xl sm:text-2xl font-extrabold text-[#0f172a] tracking-tight mt-3">
+                <h2 className="text-xl sm:text-2xl lg:text-[26px] font-extrabold text-[#0f172a] tracking-tight mt-3">
                   Login to Your Account
                 </h2>
-                <p className="text-xs text-slate-400 font-medium mt-1">
+                <p className="text-xs sm:text-sm text-slate-400 font-normal mt-1">
                   Enter your details to continue and enjoy exclusive deals.
                 </p>
               </div>
 
-              {/* Form */}
+              {/* Login Form */}
               <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Email Address */}
+                
+                {/* Email Field */}
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1.5">
                     Email Address
@@ -246,12 +233,12 @@ export function LoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email address"
-                      className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-800 placeholder-slate-300 focus:outline-none focus:border-[#ea580c] focus:ring-1 focus:ring-[#ea580c] bg-white transition font-medium"
+                      className="w-full pl-10 pr-4 py-3.5 rounded-xl border border-slate-200/90 text-xs sm:text-sm text-slate-800 placeholder-slate-300 focus:outline-none focus:border-[#f97316] focus:ring-1 focus:ring-[#f97316] bg-white transition font-medium"
                     />
                   </div>
                 </div>
 
-                {/* Password */}
+                {/* Password Field */}
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1.5">
                     Password
@@ -266,7 +253,7 @@ export function LoginPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Enter your password"
-                      className="w-full pl-10 pr-10 py-3 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-800 placeholder-slate-300 focus:outline-none focus:border-[#ea580c] focus:ring-1 focus:ring-[#ea580c] bg-white transition font-medium"
+                      className="w-full pl-10 pr-10 py-3.5 rounded-xl border border-slate-200/90 text-xs sm:text-sm text-slate-800 placeholder-slate-300 focus:outline-none focus:border-[#f97316] focus:ring-1 focus:ring-[#f97316] bg-white transition font-medium"
                     />
                     <button
                       type="button"
@@ -279,39 +266,39 @@ export function LoginPage() {
                 </div>
 
                 {/* Remember Me & Forgot Password */}
-                <div className="flex items-center justify-between pt-1 text-xs">
-                  <label className="flex items-center gap-2 cursor-pointer select-none text-slate-500 font-medium">
+                <div className="flex items-center justify-between pt-0.5 text-xs">
+                  <label className="flex items-center gap-2 cursor-pointer select-none text-slate-500 font-normal">
                     <input
                       type="checkbox"
                       checked={rememberMe}
                       onChange={(e) => setRememberMe(e.target.checked)}
-                      className="w-4 h-4 rounded text-[#ea580c] focus:ring-orange-500 border-slate-300 cursor-pointer"
+                      className="w-4 h-4 rounded text-[#f97316] focus:ring-orange-500 border-slate-300 cursor-pointer"
                     />
                     <span>Remember me</span>
                   </label>
-                  <a href="#" className="text-[#ea580c] hover:underline font-bold transition">
+                  <a href="#" className="text-[#f97316] hover:underline font-semibold transition">
                     Forgot password?
                   </a>
                 </div>
 
-                {/* Submit Button */}
+                {/* Login Action Button */}
                 <button
                   type="submit"
-                  className="w-full bg-[#ea580c] hover:bg-[#d94e06] text-white font-extrabold text-sm sm:text-base py-3.5 rounded-xl shadow-lg shadow-orange-500/20 flex items-center justify-center gap-2 transition cursor-pointer mt-2 tracking-wide"
+                  className="w-full bg-[#f97316] hover:bg-[#ea580c] text-white font-extrabold text-sm sm:text-base py-3.5 rounded-xl shadow-lg shadow-orange-500/20 flex items-center justify-center gap-2 transition cursor-pointer mt-3 tracking-wide"
                 >
                   <span>Login</span>
                   <span className="text-lg leading-none">→</span>
                 </button>
 
-                {/* Divider */}
+                {/* Social Divider */}
                 <div className="relative py-3 flex items-center justify-center">
                   <div className="border-t border-slate-100 w-full" />
-                  <span className="bg-white px-3 text-[11px] font-semibold text-slate-400 uppercase tracking-wider absolute">
+                  <span className="bg-white px-3 text-[11px] font-normal text-slate-400 uppercase tracking-wider absolute">
                     Or continue with
                   </span>
                 </div>
 
-                {/* Social Login Buttons */}
+                {/* Social Media Login Buttons */}
                 <div className="grid grid-cols-3 gap-2.5 pt-1">
                   <button
                     type="button"
@@ -341,14 +328,15 @@ export function LoginPage() {
                   </button>
                 </div>
 
-                {/* Create Account Link */}
-                <div className="text-center pt-4 text-xs text-slate-400 font-medium">
+                {/* Create Account Footer Link */}
+                <div className="text-center pt-4 text-xs text-slate-400 font-normal">
                   <span>Don't have an account? </span>
-                  <Link to="/register" className="text-[#ea580c] font-bold hover:underline ml-1">
+                  <Link to="/register" className="text-[#f97316] font-semibold hover:underline ml-0.5">
                     Create an account
                   </Link>
                 </div>
               </form>
+
             </div>
           </div>
 
