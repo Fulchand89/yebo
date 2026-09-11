@@ -2,8 +2,8 @@ import React from 'react';
 
 export function ActiveBadge({ label = 'ACTIVE', className = '' }) {
   return (
-    <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#dcfce7] text-[#16a34a] border border-emerald-200/50 select-none ${className}`}>
-      <span className="w-1.5 h-1.5 rounded-full bg-[#16a34a]" />
+    <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#dcfce7] text-[#16a34a] border border-emerald-200/50 select-none whitespace-nowrap ${className}`}>
+      <span className="w-1.5 h-1.5 rounded-full bg-[#16a34a] shrink-0" />
       {label}
     </span>
   );
@@ -11,8 +11,8 @@ export function ActiveBadge({ label = 'ACTIVE', className = '' }) {
 
 export function InactiveBadge({ label = 'INACTIVE', className = '' }) {
   return (
-    <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#fee2e2] text-[#dc2626] border border-red-200/50 select-none ${className}`}>
-      <span className="w-1.5 h-1.5 rounded-full bg-[#dc2626]" />
+    <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#fee2e2] text-[#dc2626] border border-red-200/50 select-none whitespace-nowrap ${className}`}>
+      <span className="w-1.5 h-1.5 rounded-full bg-[#dc2626] shrink-0" />
       {label}
     </span>
   );
@@ -20,7 +20,7 @@ export function InactiveBadge({ label = 'INACTIVE', className = '' }) {
 
 export function PartnerBadge({ label = 'MERCHANT PARTNER', className = '' }) {
   return (
-    <span className={`inline-flex items-center px-3.5 py-1 rounded-full border border-orange-200 bg-[#fff5eb] text-[#ea580c] font-bold text-[11px] sm:text-xs tracking-wide uppercase select-none ${className}`}>
+    <span className={`inline-flex items-center px-3.5 py-1 rounded-full border border-orange-200 bg-[#fff5eb] text-[#ea580c] font-bold text-[10px] sm:text-xs tracking-wide uppercase select-none whitespace-nowrap ${className}`}>
       {label}
     </span>
   );
@@ -28,7 +28,7 @@ export function PartnerBadge({ label = 'MERCHANT PARTNER', className = '' }) {
 
 export function SampleDataBadge({ label = 'SAMPLE DATA', className = '' }) {
   return (
-    <span className={`bg-[#fff1e7] text-[#ea580c] text-[10px] font-bold px-2.5 py-0.5 rounded-full tracking-wider uppercase select-none ${className}`}>
+    <span className={`inline-block bg-[#fff1e7] text-[#ea580c] text-[9px] sm:text-[10px] font-bold px-2 sm:px-2.5 py-0.5 rounded-full tracking-wider uppercase select-none whitespace-nowrap ${className}`}>
       {label}
     </span>
   );
@@ -36,7 +36,7 @@ export function SampleDataBadge({ label = 'SAMPLE DATA', className = '' }) {
 
 export function RealTimeBadge({ label = 'Real-time', className = '' }) {
   return (
-    <span className={`bg-slate-100 text-slate-500 text-[10px] font-semibold px-2 py-0.5 rounded-full select-none ${className}`}>
+    <span className={`inline-block bg-slate-100 text-slate-500 text-[9px] sm:text-[10px] font-semibold px-2 py-0.5 rounded-full select-none whitespace-nowrap ${className}`}>
       {label}
     </span>
   );
@@ -55,7 +55,7 @@ export function DealTypeBadge({ type, className = '' }) {
   const style = styles[type] || 'bg-slate-100 text-slate-700 border-slate-200';
 
   return (
-    <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold border ${style} select-none ${className}`}>
+    <span className={`inline-block px-2.5 sm:px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-bold border ${style} select-none whitespace-nowrap ${className}`}>
       {type}
     </span>
   );

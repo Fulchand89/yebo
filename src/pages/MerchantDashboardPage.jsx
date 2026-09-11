@@ -178,56 +178,56 @@ export function MerchantDashboardPage({ onNavigate, initialTab = 'Dashboard' }) 
         {/* 2-Column Row: Performance & Local Ranking */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-6">
           {/* Card 1: PERFORMANCE */}
-          <div className="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-6 shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col justify-between">
+          <div className="bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-6 shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col justify-between">
             <div>
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700">
-                    <BarChartIcon className="w-5 h-5 text-[#0c1844]" />
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="flex items-center gap-2.5 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
+                    <BarChartIcon className="w-4 h-4 sm:w-5 sm:h-5 text-[#0c1844]" />
                   </div>
                   <div>
-                    <h3 className="text-sm sm:text-base font-black text-slate-900 tracking-tight">
+                    <h3 className="text-xs sm:text-base font-black text-slate-900 tracking-tight">
                       PERFORMANCE
                     </h3>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1.5 flex-wrap">
                   <SampleDataBadge />
                   <RealTimeBadge />
                 </div>
               </div>
-              <p className="text-xs text-slate-500 mt-1 pl-12">
+              <p className="text-[11px] sm:text-xs text-slate-500 mt-1 sm:pl-12">
                 Live merchant redemption and uptake signals
               </p>
             </div>
 
             {/* 3 Metrics Box */}
-            <div className="bg-[#f8fafc] border border-slate-100 rounded-xl p-4 sm:p-5 mt-5">
-              <div className="grid grid-cols-3 gap-2 text-left">
-                <div>
-                  <span className="text-[10px] font-bold text-slate-400 tracking-wider uppercase block">
+            <div className="bg-[#f8fafc] border border-slate-100 rounded-xl p-3 sm:p-5 mt-4 sm:mt-5">
+              <div className="grid grid-cols-3 gap-1 sm:gap-3 text-left">
+                <div className="min-w-0">
+                  <span className="text-[8px] sm:text-[10px] font-bold text-slate-400 tracking-wider uppercase block truncate" title="ELIGIBLE CLAIMS">
                     ELIGIBLE CLAIMS
                   </span>
-                  <span className="text-xl sm:text-2xl font-black text-slate-900 mt-1 block">
+                  <span className="text-lg sm:text-2xl font-black text-slate-900 mt-0.5 sm:mt-1 block">
                     8
                   </span>
                 </div>
 
-                <div>
-                  <span className="text-[10px] font-bold text-slate-400 tracking-wider uppercase block">
+                <div className="min-w-0">
+                  <span className="text-[8px] sm:text-[10px] font-bold text-slate-400 tracking-wider uppercase block truncate" title="STAFF FUND EARNED">
                     STAFF FUND EARNED
                   </span>
-                  <span className="text-xl sm:text-2xl font-black text-[#16a34a] mt-1 block">
+                  <span className="text-lg sm:text-2xl font-black text-[#16a34a] mt-0.5 sm:mt-1 block truncate">
                     R40.00
                   </span>
                 </div>
 
-                <div>
-                  <span className="text-[10px] font-bold text-slate-400 tracking-wider uppercase block">
+                <div className="min-w-0">
+                  <span className="text-[8px] sm:text-[10px] font-bold text-slate-400 tracking-wider uppercase block truncate" title="ACTIVE DEALS">
                     ACTIVE DEALS
                   </span>
-                  <span className="text-xl sm:text-2xl font-black text-slate-900 mt-1 block">
+                  <span className="text-lg sm:text-2xl font-black text-slate-900 mt-0.5 sm:mt-1 block">
                     6
                   </span>
                 </div>
@@ -236,15 +236,15 @@ export function MerchantDashboardPage({ onNavigate, initialTab = 'Dashboard' }) 
           </div>
 
           {/* Card 2: LOCAL RANKING */}
-          <div className="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-6 shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col justify-between">
+          <div className="bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-6 shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col justify-between">
             <div>
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600">
-                    <RankingIcon className="w-5 h-5 text-orange-600" />
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="flex items-center gap-2.5 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600 shrink-0">
+                    <RankingIcon className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600" />
                   </div>
                   <div>
-                    <h3 className="text-sm sm:text-base font-black text-slate-900 tracking-tight">
+                    <h3 className="text-xs sm:text-base font-black text-slate-900 tracking-tight">
                       LOCAL RANKING
                     </h3>
                   </div>
@@ -252,21 +252,21 @@ export function MerchantDashboardPage({ onNavigate, initialTab = 'Dashboard' }) 
 
                 <SampleDataBadge />
               </div>
-              <p className="text-xs text-slate-500 mt-1 pl-12">
+              <p className="text-[11px] sm:text-xs text-slate-500 mt-1 sm:pl-12">
                 Community visibility within your suburb
               </p>
             </div>
 
             {/* Ranking Box */}
-            <div className="bg-[#f8fafc] border border-slate-100 rounded-xl p-4 sm:p-5 mt-5 flex items-center gap-4 sm:gap-5">
-              <div className="text-3xl sm:text-4xl font-black text-[#0c1844] tracking-tight shrink-0">
+            <div className="bg-[#f8fafc] border border-slate-100 rounded-xl p-3.5 sm:p-5 mt-4 sm:mt-5 flex items-center gap-3.5 sm:gap-5">
+              <div className="text-2xl sm:text-4xl font-black text-[#0c1844] tracking-tight shrink-0">
                 #4
               </div>
-              <div>
-                <span className="text-[10px] font-bold text-slate-400 tracking-wider uppercase block">
+              <div className="min-w-0">
+                <span className="text-[9px] sm:text-[10px] font-bold text-slate-400 tracking-wider uppercase block truncate">
                   LOCAL MERCHANT RANKING
                 </span>
-                <p className="text-xs sm:text-sm font-semibold text-slate-800 mt-0.5">
+                <p className="text-xs sm:text-sm font-semibold text-slate-800 mt-0.5 leading-tight sm:leading-normal">
                   Your business is currently ranked #4 in your suburb.
                 </p>
               </div>
@@ -275,12 +275,12 @@ export function MerchantDashboardPage({ onNavigate, initialTab = 'Dashboard' }) 
         </div>
 
         {/* Quick Actions Section */}
-        <section className="mt-10">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg sm:text-xl font-black text-slate-900 tracking-tight">
+        <section className="mt-8 sm:mt-10">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h2 className="text-base sm:text-xl font-black text-slate-900 tracking-tight">
               QUICK ACTIONS
             </h2>
-            <span className="text-xs font-semibold text-slate-600 bg-slate-100 px-3 py-1 rounded-full">
+            <span className="text-[10px] sm:text-xs font-semibold text-slate-600 bg-slate-100 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full whitespace-nowrap">
               5 Core Actions
             </span>
           </div>
