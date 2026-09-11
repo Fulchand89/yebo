@@ -215,7 +215,7 @@ export function MerchantDealsPage({ onNavigate }) {
             {/* Manage Products Button */}
             <OutlineButton
               onClick={() => onNavigate ? onNavigate('product-itemizer') : setShowProductsModal(true)}
-              className="border-slate-900 text-slate-900 flex-1 sm:flex-initial justify-center"
+              className="border-slate-900 text-slate-900 hover:bg-slate-100 flex-1 sm:flex-initial justify-center"
             >
               <ProductsIcon className="w-4 h-4 text-slate-900" />
               <span>MANAGE PRODUCTS</span>
@@ -224,9 +224,9 @@ export function MerchantDealsPage({ onNavigate }) {
             {/* Protection Matrix Button */}
             <OutlineButton
               onClick={() => onNavigate && onNavigate('protection-matrix')}
-              className="border-slate-300 text-slate-700 hover:border-orange-500 hover:text-orange-600 flex-1 sm:flex-initial justify-center"
+              className="border-slate-900 text-slate-900 hover:bg-slate-100 flex-1 sm:flex-initial justify-center"
             >
-              <ShieldMiniIcon className="w-4 h-4 text-[#0c1844]" />
+              <ShieldMiniIcon className="w-4 h-4 text-slate-900" />
               <span>PROTECTION MATRIX</span>
             </OutlineButton>
 
