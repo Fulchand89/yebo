@@ -9,10 +9,10 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 pb-10 sm:pb-12">
           {/* Column 1: Logo & Socials */}
           <div className="sm:col-span-2 lg:col-span-4 space-y-4">
-            <YeboLogo className="h-10 sm:h-12 md:h-14 w-auto" />
+            <YeboLogo className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto max-w-xs sm:max-w-none" />
 
             {/* Social circles */}
-            <div className="flex items-center gap-3 pt-1">
+            <div className="flex items-center gap-3 pt-2">
               <button
                 type="button"
                 aria-label="Share"
@@ -73,9 +73,9 @@ export function Footer() {
         </div>
 
         {/* Bottom Divider & Copyright */}
-        <div className="pt-6 text-center">
+        <div className="pt-6 border-t border-slate-200/80 text-center">
           <p className="text-[11px] sm:text-xs text-slate-500 font-normal">
-            &copy; 2026 YEBO PERKS. Lekker Living for everyone.
+            &copy; 2024 YEBO PERKS. Lekker Living for everyone.
           </p>
         </div>
       </div>

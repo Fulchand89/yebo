@@ -9,7 +9,7 @@ export function MerchantFooter() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12">
           {/* Column 1: Logo & Socials */}
           <div className="lg:col-span-4 space-y-4">
-            <YeboLogo className="h-12 sm:h-14 w-auto" />
+            <YeboLogo className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto max-w-xs sm:max-w-none" />
 
             {/* Social circles */}
             <div className="flex items-center gap-2.5 pt-2">
@@ -73,7 +73,7 @@ export function MerchantFooter() {
         </div>
 
         {/* Bottom Divider & Copyright */}
-        <div className="pt-6 text-center">
+        <div className="pt-6 border-t border-slate-200/80 text-center">
           <p className="text-[11px] sm:text-xs text-slate-500 font-normal">
             &copy; 2024 YEBO PERKS. Lekker Living for everyone.
           </p>
