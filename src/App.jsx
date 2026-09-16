@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import MerchantDashboardPage from '@/pages/MerchantDashboardPage';
-import MerchantDealsPage from '@/pages/MerchantDealsPage';
-import MerchantDealBuilderPage from '@/pages/MerchantDealBuilderPage';
-import MerchantProductItemizerPage from '@/pages/MerchantProductItemizerPage';
-import MerchantProtectionMatrixPage from '@/pages/MerchantProtectionMatrixPage';
-import MerchantQrScannerPage from '@/pages/MerchantQrScannerPage';
-import MerchantScanSuccessPage from '@/pages/MerchantScanSuccessPage';
-import MerchantScanExpiredPage from '@/pages/MerchantScanExpiredPage';
-import MerchantScanRejectedPage from '@/pages/MerchantScanRejectedPage';
-import MerchantStaffFundPage from '@/pages/MerchantStaffFundPage';
-import MerchantFlashMegaphonePage from '@/pages/MerchantFlashMegaphonePage';
-import MerchantBusinessProfilePage from '@/pages/MerchantBusinessProfilePage';
-import RegisterPage from '@/pages/RegisterPage';
-import RegistrationSubmittedPage from '@/pages/RegistrationSubmittedPage';
-import LoginPage from '@/pages/LoginPage';
+import { Toaster } from 'react-hot-toast';
+import AdminApp from '@/pages/admin/AdminApp';
+
+import MerchantDashboardPage from '@/pages/Merchant/MerchantDashboardPage';
+import MerchantDealsPage from '@/pages/Merchant/MerchantDealsPage';
+import MerchantDealBuilderPage from '@/pages/Merchant/MerchantDealBuilderPage';
+import MerchantProductItemizerPage from '@/pages/Merchant/MerchantProductItemizerPage';
+import MerchantProtectionMatrixPage from '@/pages/Merchant/MerchantProtectionMatrixPage';
+import MerchantQrScannerPage from '@/pages/Merchant/MerchantQrScannerPage';
+import MerchantScanSuccessPage from '@/pages/Merchant/MerchantScanSuccessPage';
+import MerchantScanExpiredPage from '@/pages/Merchant/MerchantScanExpiredPage';
+import MerchantScanRejectedPage from '@/pages/Merchant/MerchantScanRejectedPage';
+import MerchantStaffFundPage from '@/pages/Merchant/MerchantStaffFundPage';
+import MerchantFlashMegaphonePage from '@/pages/Merchant/MerchantFlashMegaphonePage';
+import MerchantBusinessProfilePage from '@/pages/Merchant/MerchantBusinessProfilePage';
+import RegisterPage from '@/pages/Merchant/RegisterPage';
+import RegistrationSubmittedPage from '@/pages/Merchant/RegistrationSubmittedPage';
+import LoginPage from '@/pages/Merchant/LoginPage';
 
 // Helper component to scroll to top on router path changes
 function ScrollToTop() {
@@ -27,7 +30,7 @@ function ScrollToTop() {
   return null;
 }
 
-// Main merchant dashboard app (state-based internal navigation)
+// Main merchant website app (state-based internal navigation)
 function MerchantApp() {
   const [currentPage, setCurrentPage] = useState('dashboard');
 
@@ -63,15 +66,30 @@ export default function App() {
   return (
     <>
       <ScrollToTop />
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          duration: 3500,
+          style: {
+            background: '#0f172a',
+            color: '#fff',
+            borderRadius: '12px',
+            fontSize: '13px',
+            fontWeight: '600',
+            padding: '10px 16px',
+            boxShadow: '0 10px 30px -5px rgba(0,0,0,0.3)',
+          },
+        }}
+      />
       <Routes>
-        {/* /login → Login page */}
-        <Route path="/login" element={<LoginPage />} />
+        {/* Admin Panel routes: /admin and /admin/* */}
+        <Route path="/admin/*" element={<AdminApp />} />
+        <Route path="/admin" element={<AdminApp />} />
 
-        {/* /register → Registration page */}
+        {/* Website Auth & Sub routes */}
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/registration-submitted" element={<RegistrationSubmittedPage />} />
-
-        {/* Direct routes for scan result pages */}
         <Route path="/scan-success" element={<MerchantScanSuccessPage />} />
         <Route path="/scan-expired" element={<MerchantScanExpiredPage />} />
         <Route path="/scan-rejected" element={<MerchantScanRejectedPage />} />
@@ -79,7 +97,7 @@ export default function App() {
         <Route path="/flash-megaphone" element={<MerchantFlashMegaphonePage />} />
         <Route path="/business-profile" element={<MerchantBusinessProfilePage />} />
 
-        {/* / → Merchant App (all internal pages) */}
+        {/* Root Route / → Main Website */}
         <Route path="/*" element={<MerchantApp />} />
       </Routes>
     </>

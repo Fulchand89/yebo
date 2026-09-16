@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { YeboLogo } from '@/components/YeboLogo';
 import { Footer } from '@/components/common/Footer';
-import RegistrationSubmittedPage from '@/pages/RegistrationSubmittedPage';
+import RegistrationSubmittedPage from "@/pages/Merchant/RegistrationSubmittedPage";
 
 // ─── Tiny icon helpers ───────────────────────────────────────────────────────
 function SectionIcon({ emoji }) {
