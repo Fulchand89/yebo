@@ -275,7 +275,7 @@ export function AdminPaymentsPage() {
   return (
     <div className="space-y-5">
       {/* Top Tabs Bar */}
-      <div className="bg-white border border-slate-200/90 rounded-2xl p-2 flex flex-wrap gap-1 shadow-xs">
+      <div className="bg-white border border-slate-200/90 rounded-2xl p-2 flex overflow-x-auto scrollbar-none sm:flex-wrap gap-1.5 shadow-xs">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -284,7 +284,7 @@ export function AdminPaymentsPage() {
               key={tab.id}
               type="button"
               onClick={() => handleTabChange(tab.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer ${isActive
+              className={`flex items-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs font-bold transition cursor-pointer shrink-0 whitespace-nowrap ${isActive
                 ? 'bg-[#0c1844] text-white shadow-xs'
                 : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                 }`}
@@ -309,14 +309,14 @@ export function AdminPaymentsPage() {
       {/* 1. Tab Content: PayFast Transactions */}
       {activeTab === 'transactions' && (
         <div className="space-y-4">
-          <div className="bg-white border border-slate-200/90 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-xs">
+          <div className="bg-white border border-slate-200/90 rounded-2xl p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shadow-xs">
             <SearchBar
               value={searchQuery}
               onChange={setSearchQuery}
               placeholder="Search by TXN, customer, or gateway ref..."
               className="w-full sm:w-80"
             />
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto">
               <span className="text-xs text-slate-500 font-medium">Gateway: PayFast Engine v3</span>
               <button
                 type="button"
@@ -333,6 +333,7 @@ export function AdminPaymentsPage() {
             columns={transactionColumns}
             data={mockTransactions}
             keyField="id"
+            minWidth="920px"
           />
         </div>
       )}
@@ -340,7 +341,7 @@ export function AdminPaymentsPage() {
       {/* 2. Tab Content: Transaction Receipts */}
       {activeTab === 'receipts' && (
         <div className="space-y-4">
-          <div className="bg-white border border-slate-200/90 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-xs">
+          <div className="bg-white border border-slate-200/90 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-xs">
             <div>
               <h3 className="text-sm font-black text-slate-900">YEBO PAYMENT RECEIPTS</h3>
               <p className="text-xs text-slate-500">Official tax invoices and subscriber settlement vouchers</p>
@@ -409,6 +410,7 @@ export function AdminPaymentsPage() {
             columns={duplicateColumns}
             data={mockDuplicateEvents}
             keyField="eventId"
+            minWidth="920px"
           />
         </div>
       )}
@@ -433,6 +435,7 @@ export function AdminPaymentsPage() {
             columns={failedColumns}
             data={mockFailedEvents}
             keyField="eventId"
+            minWidth="920px"
           />
         </div>
       )}

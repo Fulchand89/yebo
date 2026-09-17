@@ -65,7 +65,7 @@ export function AdminLogsPage() {
     {
       header: 'Log ID',
       key: 'id',
-      render: (item) => <span className="font-mono font-bold text-[#0c1844]">{item.id}</span>,
+      render: (item) => <span className="font-mono font-bold text-[#0c1844] whitespace-nowrap">{item.id}</span>,
     },
     {
       header: 'Timestamp',
@@ -130,7 +130,7 @@ export function AdminLogsPage() {
     <div className="space-y-5">
       {/* Controls: Search, Level filter, Module dropdown */}
       <div className="bg-white border border-slate-200/90 rounded-2xl p-4 space-y-4 shadow-xs">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
           <SearchBar
             value={searchQuery}
             onChange={(q) => {
@@ -141,14 +141,14 @@ export function AdminLogsPage() {
             className="w-full sm:w-80"
           />
 
-          <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+          <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-end">
             <select
               value={moduleFilter}
               onChange={(e) => {
                 setModuleFilter(e.target.value);
                 setCurrentPage(1);
               }}
-              className="px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:border-[#F97316] font-semibold text-slate-700"
+              className="flex-1 sm:flex-initial px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:border-[#F97316] font-semibold text-slate-700 cursor-pointer"
             >
               <option value="All">All Modules</option>
               <option value="PayFast IPN">PayFast IPN</option>
@@ -159,7 +159,7 @@ export function AdminLogsPage() {
             <button
               type="button"
               onClick={() => toast.success('Telemetry streaming active (UI Demo)...')}
-              className="p-2 text-slate-600 hover:text-slate-900 bg-slate-50 hover:bg-slate-100 rounded-xl transition"
+              className="p-2 text-slate-600 hover:text-slate-900 bg-slate-50 hover:bg-slate-100 rounded-xl transition cursor-pointer shrink-0"
               title="Refresh Logs"
             >
               <RefreshCw className="w-4 h-4" />
@@ -191,6 +191,7 @@ export function AdminLogsPage() {
         data={paginatedLogs}
         keyField="id"
         emptyTitle="No log entries match criteria"
+        minWidth="950px"
       />
 
       {/* Pagination */}

@@ -11,8 +11,8 @@ export function FilterBar({
   className = '',
 }) {
   return (
-    <div className={`flex flex-wrap items-center justify-between gap-3 ${className}`}>
-      <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-100 rounded-xl">
+    <div className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${className}`}>
+      <div className="flex overflow-x-auto scrollbar-none sm:flex-wrap items-center gap-1.5 p-1 bg-slate-100 rounded-xl max-w-full">
         {options.map((option) => {
           const val = typeof option === 'object' ? option.value : option;
           const label = typeof option === 'object' ? option.label : option;
@@ -24,7 +24,7 @@ export function FilterBar({
               key={val}
               type="button"
               onClick={() => onChange && onChange(val)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer flex items-center gap-1.5 shrink-0 whitespace-nowrap ${
                 isActive
                   ? 'bg-white text-slate-900 shadow-xs'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'

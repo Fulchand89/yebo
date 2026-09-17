@@ -115,14 +115,14 @@ export function AdminNotificationsPage() {
       {/* ─── Action Toolbar: Filter Tabs & Mark All As Read ─── */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white border border-slate-200/90 rounded-2xl p-3.5 sm:p-4 shadow-xs">
         {/* Status Filter Tabs (All, Unread, Read) */}
-        <div className="flex items-center gap-1.5 p-1 bg-slate-100/90 rounded-xl border border-slate-200/60 w-fit">
+        <div className="flex overflow-x-auto scrollbar-none sm:flex-wrap items-center gap-1 p-1 bg-slate-100/90 rounded-xl border border-slate-200/60 w-full sm:w-fit max-w-full">
           <button
             type="button"
             onClick={() => {
               setStatusFilter('all');
               setCurrentPage(1);
             }}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer shrink-0 whitespace-nowrap ${
               statusFilter === 'all'
                 ? 'bg-white text-slate-900 shadow-xs'
                 : 'text-slate-600 hover:text-slate-900'
@@ -136,7 +136,7 @@ export function AdminNotificationsPage() {
               setStatusFilter('unread');
               setCurrentPage(1);
             }}
-            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer shrink-0 whitespace-nowrap ${
               statusFilter === 'unread'
                 ? 'bg-white text-[#F97316] shadow-xs'
                 : 'text-slate-600 hover:text-slate-900'
@@ -155,7 +155,7 @@ export function AdminNotificationsPage() {
               setStatusFilter('read');
               setCurrentPage(1);
             }}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer shrink-0 whitespace-nowrap ${
               statusFilter === 'read'
                 ? 'bg-white text-emerald-700 shadow-xs'
                 : 'text-slate-600 hover:text-slate-900'
@@ -170,7 +170,7 @@ export function AdminNotificationsPage() {
           type="button"
           onClick={handleMarkAllRead}
           disabled={unreadCount === 0}
-          className={`flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer shadow-xs shrink-0 ${
+          className={`flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer shadow-xs w-full sm:w-auto shrink-0 ${
             unreadCount > 0
               ? 'bg-[#F97316] text-white hover:bg-[#ea580c] active:scale-95'
               : 'bg-slate-100 text-slate-400 cursor-not-allowed border border-slate-200/80'
@@ -266,7 +266,7 @@ export function AdminNotificationsPage() {
 
                 {/* Right: Quick Action Controls */}
                 <div
-                  className="flex items-center gap-2.5 self-end sm:self-center shrink-0"
+                  className="flex items-center justify-between sm:justify-end gap-2.5 w-full sm:w-auto pt-2.5 sm:pt-0 border-t sm:border-t-0 border-slate-100 shrink-0"
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Primary Action Button */}
@@ -302,7 +302,8 @@ export function AdminNotificationsPage() {
         <div className="flex justify-center pt-2">
           <Pagination
             currentPage={currentPage}
-            totalPages={Math.ceil(filteredNotifications.length / pageSize)}
+            totalItems={filteredNotifications.length}
+            pageSize={pageSize}
             onPageChange={setCurrentPage}
           />
         </div>

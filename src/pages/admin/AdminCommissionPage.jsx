@@ -24,6 +24,9 @@ export function AdminCommissionPage() {
   const [activeTab, setActiveTab] = useState('subscriber'); // 'subscriber' | 'merchant' | 'treasury'
   const [searchQuery, setSearchQuery] = useState('');
   const [dateRange, setDateRange] = useState('This Month');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [appliedCustomRange, setAppliedCustomRange] = useState(null); // { start: string, end: string } | null
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
 
@@ -37,8 +40,37 @@ export function AdminCommissionPage() {
 
   const currentDataset = mockCommissionLedger[activeTab] || [];
 
+  const handleDateRangeChange = (newRange) => {
+    setDateRange(newRange);
+    setCurrentPage(1);
+    if (newRange !== 'Custom Range') {
+      setAppliedCustomRange(null);
+    }
+  };
+
+  const handleApplyCustomRange = () => {
+    if (!startDate || !endDate) {
+      toast.error('Please select both Start Date and End Date');
+      return;
+    }
+    if (endDate < startDate) {
+      toast.error('End Date cannot be earlier than Start Date');
+      return;
+    }
+    setAppliedCustomRange({ start: startDate, end: endDate });
+    setCurrentPage(1);
+    toast.success(`Applied date range: ${startDate} to ${endDate}`);
+  };
+
   const filteredData = useMemo(() => {
     return currentDataset.filter((item) => {
+      // Custom date range filter
+      if (dateRange === 'Custom Range' && appliedCustomRange?.start && appliedCustomRange?.end) {
+        if (item.date < appliedCustomRange.start || item.date > appliedCustomRange.end) {
+          return false;
+        }
+      }
+
       const q = searchQuery.toLowerCase();
       return (
         searchQuery === '' ||
@@ -48,7 +80,7 @@ export function AdminCommissionPage() {
         item.sourceReceipt.toLowerCase().includes(q)
       );
     });
-  }, [currentDataset, searchQuery]);
+  }, [currentDataset, searchQuery, dateRange, appliedCustomRange]);
 
   const paginatedData = useMemo(() => {
     const start = (currentPage - 1) * pageSize;
@@ -146,9 +178,9 @@ export function AdminCommissionPage() {
 
       {/* Tabs & Search Filter Header */}
       <div className="bg-white border border-slate-200/90 rounded-2xl p-4 space-y-4 shadow-xs">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
           {/* Tabs */}
-          <div className="flex flex-wrap gap-1 p-1 bg-slate-100 rounded-xl w-full sm:w-auto">
+          <div className="flex overflow-x-auto scrollbar-none sm:flex-wrap gap-1 p-1 bg-slate-100 rounded-xl w-full sm:w-auto">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -160,7 +192,7 @@ export function AdminCommissionPage() {
                     setActiveTab(tab.id);
                     setCurrentPage(1);
                   }}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${isActive ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-600 hover:text-slate-900'
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer shrink-0 whitespace-nowrap ${isActive ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-600 hover:text-slate-900'
                     }`}
                 >
                   <Icon className="w-3.5 h-3.5" />
@@ -171,11 +203,11 @@ export function AdminCommissionPage() {
           </div>
 
           {/* Date range & Export */}
-          <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+          <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-end">
             <select
               value={dateRange}
-              onChange={(e) => setDateRange(e.target.value)}
-              className="px-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:border-[#F97316] font-semibold text-slate-700"
+              onChange={(e) => handleDateRangeChange(e.target.value)}
+              className="flex-1 sm:flex-initial px-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:border-[#F97316] font-semibold text-slate-700 cursor-pointer"
             >
               <option value="This Month">This Month</option>
               <option value="Last Month">Last Month</option>
@@ -185,13 +217,66 @@ export function AdminCommissionPage() {
             <button
               type="button"
               onClick={() => toast.success('Exporting Commission Ledger CSV (UI Demo)...')}
-              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-bold text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 transition"
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-bold text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 transition cursor-pointer shrink-0"
             >
               <Download className="w-3.5 h-3.5" />
               Export
             </button>
           </div>
         </div>
+
+        {/* Custom Range Date Pickers */}
+        {dateRange === 'Custom Range' && (
+          <div className="flex flex-wrap items-center justify-start sm:justify-end gap-2.5 pt-3 border-t border-slate-100 w-full">
+            {/* Start Date */}
+            <div className="flex items-center gap-2">
+              <label className="text-xs font-semibold text-slate-500">Start Date:</label>
+              <div className="relative flex items-center">
+                <Calendar className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 pointer-events-none" />
+                <input
+                  type="date"
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                  onClick={(e) => {
+                    try {
+                      e.currentTarget.showPicker?.();
+                    } catch (err) {}
+                  }}
+                  className="pl-8 pr-2.5 py-1.5 text-xs bg-slate-50 hover:bg-white border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-hidden focus:border-[#F97316] focus:ring-2 focus:ring-orange-100 transition cursor-pointer"
+                />
+              </div>
+            </div>
+
+            {/* End Date */}
+            <div className="flex items-center gap-2">
+              <label className="text-xs font-semibold text-slate-500">End Date:</label>
+              <div className="relative flex items-center">
+                <Calendar className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 pointer-events-none" />
+                <input
+                  type="date"
+                  value={endDate}
+                  min={startDate || undefined}
+                  onChange={(e) => setEndDate(e.target.value)}
+                  onClick={(e) => {
+                    try {
+                      e.currentTarget.showPicker?.();
+                    } catch (err) {}
+                  }}
+                  className="pl-8 pr-2.5 py-1.5 text-xs bg-slate-50 hover:bg-white border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-hidden focus:border-[#F97316] focus:ring-2 focus:ring-orange-100 transition cursor-pointer"
+                />
+              </div>
+            </div>
+
+            {/* Apply Button */}
+            <button
+              type="button"
+              onClick={handleApplyCustomRange}
+              className="px-4 py-1.5 bg-[#F97316] hover:bg-[#ea580c] text-white text-xs font-bold rounded-xl transition cursor-pointer shadow-xs active:scale-95 shrink-0"
+            >
+              Apply
+            </button>
+          </div>
+        )}
 
         {/* Search */}
         <SearchBar
@@ -210,6 +295,7 @@ export function AdminCommissionPage() {
         data={paginatedData}
         keyField="ledgerId"
         emptyTitle="No commission records found"
+        minWidth="850px"
       />
 
       {/* Pagination */}

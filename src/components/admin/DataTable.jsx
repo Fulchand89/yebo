@@ -10,6 +10,7 @@ export function DataTable({
   emptyTitle = 'No records found',
   emptyDescription = 'There are currently no records matching the specified criteria.',
   renderRow,
+  minWidth = '850px',
   className = '',
 }) {
   if (isLoading) {
@@ -22,7 +23,7 @@ export function DataTable({
 
   return (
     <div className={`w-full overflow-x-auto rounded-2xl border border-slate-200/90 bg-white shadow-xs ${className}`}>
-      <table className="w-full text-left text-xs text-slate-700">
+      <table className="w-full text-left text-xs text-slate-700" style={{ minWidth }}>
         <thead className="bg-slate-50/70 text-[11px] uppercase tracking-wider text-slate-500 font-bold border-b border-slate-200/80">
           <tr>
             {columns.map((col, idx) => (

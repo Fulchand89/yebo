@@ -460,11 +460,11 @@ export function AdminUsersPage() {
             className="w-full sm:w-96"
           />
 
-          <div className="flex items-center gap-2.5 w-full sm:w-auto justify-end">
+          <div className="flex items-center gap-2.5 w-full sm:w-auto justify-between sm:justify-end">
             <select
               value={subscriptionFilter}
               onChange={(e) => { setSubscriptionFilter(e.target.value); setCurrentPage(1); }}
-              className="px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-hidden focus:border-[#F97316] font-semibold text-slate-700 cursor-pointer"
+              className="flex-1 sm:flex-none px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-hidden focus:border-[#F97316] font-semibold text-slate-700 cursor-pointer"
             >
               <option value="All">All Plans</option>
               <option value="VIP">VIP Member</option>
