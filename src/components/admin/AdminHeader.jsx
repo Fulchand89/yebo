@@ -13,6 +13,7 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { Tooltip } from './Tooltip';
+import { useAdminNotifications } from '@/context/AdminNotificationContext';
 
 export function AdminHeader({
   title = 'Dashboard',
@@ -22,10 +23,10 @@ export function AdminHeader({
   onGlobalSearch,
 }) {
   const navigate = useNavigate();
+  const { notifications, unreadCount, markAsRead, markAllAsRead } = useAdminNotifications();
+
   const [profileOpen, setProfileOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
-  const [viewAllNotifs, setViewAllNotifs] = useState(false);
-  const [filterType, setFilterType] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
 
   const profileRef = useRef(null);
@@ -39,94 +40,16 @@ export function AdminHeader({
       }
       if (notifRef.current && !notifRef.current.contains(e.target)) {
         setNotificationsOpen(false);
-        setViewAllNotifs(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const [notificationsList, setNotificationsList] = useState([
-    {
-      id: 1,
-      title: 'Pending Merchant Applications',
-      desc: '18 new merchant registrations require verification.',
-      time: '12m ago',
-      unread: true,
-      link: '/admin/merchants',
-    },
-    {
-      id: 2,
-      title: 'Duplicate Event Intercepted',
-      desc: 'Double QR scan at The Daily Grind was suppressed.',
-      time: '1h ago',
-      unread: true,
-      link: '/admin/payments',
-    },
-    {
-      id: 3,
-      title: 'EFT Payout Batch Generated',
-      desc: 'September mid-month disbursement file is ready.',
-      time: '3h ago',
-      unread: true,
-      link: '/admin/eft',
-    },
-    {
-      id: 4,
-      title: 'New High-Volume Merchant Onboarded',
-      desc: 'Apex Fitness & Recovery Hub completed registration.',
-      time: '5h ago',
-      unread: false,
-      link: '/admin/merchants',
-    },
-    {
-      id: 5,
-      title: 'KYC Document Verified',
-      desc: 'Sipho Ndlovu identification and proof of address approved.',
-      time: '8h ago',
-      unread: false,
-      link: '/admin/users',
-    },
-    {
-      id: 6,
-      title: 'Weekly Commission Settled',
-      desc: '₹142,000 treasury allocation booked to ledger.',
-      time: '1d ago',
-      unread: false,
-      link: '/admin/commission',
-    },
-    {
-      id: 7,
-      title: 'Velocity Security Alert',
-      desc: 'Rate limiter activated for 3 rapid attempts on terminal #14.',
-      time: '2d ago',
-      unread: false,
-      link: '/admin/payments',
-    },
-    {
-      id: 8,
-      title: 'Database Backup Completed',
-      desc: 'Daily snapshot archived to secure cloud storage.',
-      time: '3d ago',
-      unread: false,
-      link: '/admin/settings',
-    },
-  ]);
-
-  const unreadCount = useMemo(() => {
-    return notificationsList.filter((n) => n.unread).length;
-  }, [notificationsList]);
-
-  const displayedNotifications = useMemo(() => {
-    let list = notificationsList;
-    if (filterType === 'unread') {
-      list = list.filter((n) => n.unread);
-    }
-    if (!viewAllNotifs) {
-      return list.slice(0, 3);
-    }
-    return list;
-  }, [notificationsList, filterType, viewAllNotifs]);
+  // Dropdown displays latest 10 notifications
+  const latestNotifications = useMemo(() => {
+    return notifications.slice(0, 10);
+  }, [notifications]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -188,10 +111,7 @@ export function AdminHeader({
         <div className="relative" ref={notifRef}>
           <button
             type="button"
-            onClick={() => {
-              setNotificationsOpen(!notificationsOpen);
-              if (notificationsOpen) setViewAllNotifs(false);
-            }}
+            onClick={() => setNotificationsOpen(!notificationsOpen)}
             className="relative p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition cursor-pointer"
             aria-label="Notifications"
           >
@@ -219,80 +139,38 @@ export function AdminHeader({
                     </span>
                   )}
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setViewAllNotifs(!viewAllNotifs)}
-                  className="text-[11px] font-bold text-[#F97316] hover:text-[#ea580c] hover:underline cursor-pointer transition"
-                >
-                  {viewAllNotifs ? 'Show Recent' : `View All (${notificationsList.length})`}
-                </button>
+                {unreadCount > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => markAllAsRead()}
+                    className="text-[10px] font-bold text-[#F97316] hover:text-[#ea580c] hover:underline cursor-pointer transition"
+                  >
+                    Mark all read
+                  </button>
+                )}
               </div>
 
-              {/* Filter Tabs when View All is Active */}
-              {viewAllNotifs && (
-                <div className="flex items-center justify-between gap-1 mb-2 px-1">
-                  <div className="flex items-center gap-1.5">
-                    <button
-                      type="button"
-                      onClick={() => setFilterType('all')}
-                      className={`text-[10px] font-bold px-2 py-0.5 rounded-md transition cursor-pointer ${filterType === 'all'
-                          ? 'bg-[#0c1844] text-white'
-                          : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                        }`}
-                    >
-                      All ({notificationsList.length})
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setFilterType('unread')}
-                      className={`text-[10px] font-bold px-2 py-0.5 rounded-md transition cursor-pointer ${filterType === 'unread'
-                          ? 'bg-[#0c1844] text-white'
-                          : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                        }`}
-                    >
-                      Unread ({unreadCount})
-                    </button>
-                  </div>
-                  {unreadCount > 0 && (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setNotificationsList((prev) =>
-                          prev.map((n) => ({ ...n, unread: false }))
-                        );
-                      }}
-                      className="text-[10px] font-semibold text-slate-500 hover:text-[#F97316] transition cursor-pointer"
-                    >
-                      Mark all read
-                    </button>
-                  )}
-                </div>
-              )}
-
-              {/* Notifications List */}
+              {/* Latest 10 Notifications List */}
               <div
                 className="space-y-1.5 max-h-80 overflow-y-auto smooth-no-scrollbar scroll-smooth pr-1"
                 style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               >
-                {displayedNotifications.length === 0 ? (
+                {latestNotifications.length === 0 ? (
                   <div className="py-6 text-center text-xs text-slate-400">
-                    No notifications in this filter.
+                    No notifications available.
                   </div>
                 ) : (
-                  displayedNotifications.map((n) => (
+                  latestNotifications.map((n) => (
                     <div
                       key={n.id}
                       onClick={() => {
-                        setNotificationsList((prev) =>
-                          prev.map((item) =>
-                            item.id === n.id ? { ...item, unread: false } : item
-                          )
-                        );
+                        markAsRead(n.id);
                         setNotificationsOpen(false);
-                        navigate(n.link);
+                        navigate(n.link || '/admin/notifications');
                       }}
-                      className={`p-2.5 rounded-xl cursor-pointer transition ${n.unread ? 'bg-orange-50/50 hover:bg-orange-50' : 'hover:bg-slate-50'
-                        }`}
+                      className={`p-2.5 rounded-xl cursor-pointer transition ${
+                        n.unread ? 'bg-orange-50/50 hover:bg-orange-50' : 'hover:bg-slate-50'
+                      }`}
                     >
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex items-center gap-1.5 min-w-0">
@@ -313,17 +191,14 @@ export function AdminHeader({
               <div className="pt-2 mt-2 border-t border-slate-100">
                 <button
                   type="button"
-                  onClick={() => setViewAllNotifs(!viewAllNotifs)}
-                  className="w-full py-2 px-3 text-center text-xs font-bold text-[#F97316] hover:text-[#ea580c] hover:bg-orange-50/80 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer"
+                  onClick={() => {
+                    setNotificationsOpen(false);
+                    navigate('/admin/notifications');
+                  }}
+                  className="w-full py-2.5 px-3 text-center text-xs font-bold text-[#F97316] hover:text-[#ea580c] hover:bg-orange-50/80 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer"
                 >
-                  {viewAllNotifs ? (
-                    <span>Show Less Notifications</span>
-                  ) : (
-                    <>
-                      <span>View All Notifications ({notificationsList.length})</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </>
-                  )}
+                  <span>View All Notifications ({notifications.length})</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>

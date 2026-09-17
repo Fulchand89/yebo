@@ -96,6 +96,9 @@ export function AdminLayout() {
     if (pathname === '/admin/eft') {
       return { title: 'EFT Payout Management', subtitle: 'Monthly disbursement batches, recipient reconciliations and file generation' };
     }
+    if (pathname === '/admin/notifications') {
+      return { title: 'Notifications', subtitle: 'Platform activity alerts, operational notices and security audit logs' };
+    }
     if (pathname === '/admin/settings') {
       return { title: 'Platform Settings', subtitle: 'Configure general profile, PayFast gateway credentials and security access policies' };
     }

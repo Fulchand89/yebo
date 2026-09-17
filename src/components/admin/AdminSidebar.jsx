@@ -11,9 +11,11 @@ import {
   Settings,
   LogOut,
   ChevronRight,
+  Bell,
 } from 'lucide-react';
 import { YeboLogo } from '@/components/YeboLogo';
 import { Tooltip } from './Tooltip';
+import { useAdminNotifications } from '@/context/AdminNotificationContext';
 
 /**
  * Subcomponent: SidebarHeader
@@ -233,6 +235,7 @@ export function AdminSidebar({
   onCloseMobile,
 }) {
   const navigate = useNavigate();
+  const { unreadCount } = useAdminNotifications();
 
   const navItems = [
     {
@@ -270,6 +273,13 @@ export function AdminSidebar({
       to: '/admin/eft',
       label: 'EFT',
       icon: Send,
+    },
+    {
+      to: '/admin/notifications',
+      label: 'Notifications',
+      icon: Bell,
+      badge: unreadCount > 0 ? String(unreadCount) : undefined,
+      badgeVariant: 'warning',
     },
     {
       to: '/admin/settings',
