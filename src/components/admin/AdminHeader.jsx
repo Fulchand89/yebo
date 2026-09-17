@@ -235,22 +235,20 @@ export function AdminHeader({
                     <button
                       type="button"
                       onClick={() => setFilterType('all')}
-                      className={`text-[10px] font-bold px-2 py-0.5 rounded-md transition cursor-pointer ${
-                        filterType === 'all'
+                      className={`text-[10px] font-bold px-2 py-0.5 rounded-md transition cursor-pointer ${filterType === 'all'
                           ? 'bg-[#0c1844] text-white'
                           : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                      }`}
+                        }`}
                     >
                       All ({notificationsList.length})
                     </button>
                     <button
                       type="button"
                       onClick={() => setFilterType('unread')}
-                      className={`text-[10px] font-bold px-2 py-0.5 rounded-md transition cursor-pointer ${
-                        filterType === 'unread'
+                      className={`text-[10px] font-bold px-2 py-0.5 rounded-md transition cursor-pointer ${filterType === 'unread'
                           ? 'bg-[#0c1844] text-white'
                           : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                      }`}
+                        }`}
                     >
                       Unread ({unreadCount})
                     </button>
@@ -293,9 +291,8 @@ export function AdminHeader({
                         setNotificationsOpen(false);
                         navigate(n.link);
                       }}
-                      className={`p-2.5 rounded-xl cursor-pointer transition ${
-                        n.unread ? 'bg-orange-50/50 hover:bg-orange-50' : 'hover:bg-slate-50'
-                      }`}
+                      className={`p-2.5 rounded-xl cursor-pointer transition ${n.unread ? 'bg-orange-50/50 hover:bg-orange-50' : 'hover:bg-slate-50'
+                        }`}
                     >
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex items-center gap-1.5 min-w-0">

@@ -115,9 +115,8 @@ export function AdminLayout() {
 
       {/* Main Layout Area - Transitions between md:pl-64 (full open) and md:pl-20 (collapsed mini-sidebar) */}
       <div
-        className={`min-h-screen flex flex-col min-w-0 w-full max-w-full transition-all duration-300 ease-in-out ${
-          isDesktopOpen ? 'md:pl-64' : 'md:pl-20'
-        }`}
+        className={`min-h-screen flex flex-col min-w-0 w-full max-w-full transition-all duration-300 ease-in-out ${isDesktopOpen ? 'md:pl-64' : 'md:pl-20'
+          }`}
       >
         {/* Header */}
         <AdminHeader

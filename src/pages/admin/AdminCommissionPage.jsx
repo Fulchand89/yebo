@@ -81,9 +81,8 @@ export function AdminCommissionPage() {
       key: 'amount',
       render: (item) => (
         <span
-          className={`font-black ${
-            item.amount.startsWith('+') ? 'text-emerald-600' : 'text-slate-900'
-          }`}
+          className={`font-black ${item.amount.startsWith('+') ? 'text-emerald-600' : 'text-slate-900'
+            }`}
         >
           {item.amount}
         </span>
@@ -161,9 +160,8 @@ export function AdminCommissionPage() {
                     setActiveTab(tab.id);
                     setCurrentPage(1);
                   }}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
-                    isActive ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-600 hover:text-slate-900'
-                  }`}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${isActive ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-600 hover:text-slate-900'
+                    }`}
                 >
                   <Icon className="w-3.5 h-3.5" />
                   <span>{tab.label}</span>
@@ -181,8 +179,7 @@ export function AdminCommissionPage() {
             >
               <option value="This Month">This Month</option>
               <option value="Last Month">Last Month</option>
-              <option value="Q3 2026">Q3 2026</option>
-              <option value="All Time">All Time</option>
+              <option value="Custom Range">Custom Range</option>
             </select>
 
             <button
@@ -269,10 +266,7 @@ export function AdminCommissionPage() {
               </div>
             </div>
 
-            <div className="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-emerald-800">
-              <span className="font-bold">Ledger Balance State: </span>
-              Verified balanced against master treasury clearing house account.
-            </div>
+
           </div>
         </AdminModal>
       )}

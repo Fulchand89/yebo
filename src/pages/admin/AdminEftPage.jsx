@@ -23,25 +23,33 @@ export function AdminEftPage() {
   const [eftStats, setEftStats] = useState(mockEftData.stats);
   const [generatedFiles, setGeneratedFiles] = useState(mockEftData.generatedFiles);
 
-  const [selectedMonth, setSelectedMonth] = useState('September');
-  const [selectedYear, setSelectedYear] = useState('2026');
+  const [selectedDate, setSelectedDate] = useState(
+    new Date().toISOString().split('T')[0] // defaults to today: 'YYYY-MM-DD'
+  );
   const [isGenerating, setIsGenerating] = useState(false);
   const [viewingFile, setViewingFile] = useState(null);
 
-  const months = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-  ];
-
   const handleGenerateFile = () => {
     setIsGenerating(true);
+    const dateObj = new Date(selectedDate);
+    const year = dateObj.getFullYear();
+    const month = dateObj.getMonth(); // 0-indexed
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    const monthNames = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December',
+    ];
+    const monthName = monthNames[month];
+    const monthPadded = String(month + 1).padStart(2, '0');
+    const dateStamp = `${year}${monthPadded}${day}`;
+
     setTimeout(() => {
       setIsGenerating(false);
-      const newFileId = `EFT-FILE-${selectedYear}09-${String(generatedFiles.length + 1).padStart(2, '0')}`;
+      const newFileId = `EFT-FILE-${year}${monthPadded}-${String(generatedFiles.length + 1).padStart(2, '0')}`;
       const newFile = {
         fileId: newFileId,
-        fileName: `YEBO_EFT_DISBURSEMENT_${selectedYear}0915_AUTO.csv`,
-        month: `${selectedMonth} ${selectedYear}`,
+        fileName: `YEBO_EFT_DISBURSEMENT_${dateStamp}_AUTO.csv`,
+        month: `${monthName} ${year} (${day} ${monthName})`,
         recipients: eftStats.totalRecipients,
         totalAmount: eftStats.totalPayout,
         generatedDate: new Date().toISOString().replace('T', ' ').substring(0, 16),
@@ -49,7 +57,7 @@ export function AdminEftPage() {
       };
 
       setGeneratedFiles([newFile, ...generatedFiles]);
-      toast.success(`EFT file ${newFile.fileName} generated successfully!`);
+      toast.success('EFT file generated successfully!');
     }, 1200);
   };
 
@@ -172,42 +180,45 @@ export function AdminEftPage() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+          <div className="flex flex-wrap items-end gap-4 w-full md:w-auto">
+            {/* ── Full Date Picker ─────────────────────────────── */}
             <div>
-              <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1">
-                Select Month
+              <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1.5 tracking-wider">
+                <span className="flex items-center gap-1">
+                  <Calendar className="w-3 h-3" />
+                  Select Disbursement Date
+                </span>
               </label>
-              <select
-                value={selectedMonth}
-                onChange={(e) => setSelectedMonth(e.target.value)}
-                className="px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-800 focus:border-[#F97316]"
-              >
-                {months.map((m) => (
-                  <option key={m} value={m}>{m}</option>
-                ))}
-              </select>
+              <div className="relative">
+                <input
+                  type="date"
+                  id="eft-date-picker"
+                  value={selectedDate}
+                  onChange={(e) => setSelectedDate(e.target.value)}
+                  max={new Date(new Date().setFullYear(new Date().getFullYear() + 5))
+                    .toISOString().split('T')[0]}
+                  min="2020-01-01"
+                  className="pl-3 pr-3 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-800
+                    focus:outline-none focus:border-[#F97316] focus:ring-2 focus:ring-[#F97316]/20
+                    hover:border-slate-300 transition-all duration-150 cursor-pointer
+                    [color-scheme:light] min-w-[180px]"
+                />
+              </div>
+              {selectedDate && (
+                <p className="text-[10px] text-slate-400 mt-1 font-medium">
+                  {new Date(selectedDate + 'T00:00:00').toLocaleDateString('en-ZA', {
+                    weekday: 'short', day: 'numeric', month: 'long', year: 'numeric'
+                  })}
+                </p>
+              )}
             </div>
 
-            <div>
-              <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1">
-                Select Year
-              </label>
-              <select
-                value={selectedYear}
-                onChange={(e) => setSelectedYear(e.target.value)}
-                className="px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-800 focus:border-[#F97316]"
-              >
-                <option value="2026">2026</option>
-                <option value="2025">2025</option>
-              </select>
-            </div>
-
-            <div className="pt-4">
+            <div className="pb-0">
               <button
                 type="button"
                 onClick={handleGenerateFile}
-                disabled={isGenerating}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#F97316] hover:bg-[#F97316] text-white font-black text-xs uppercase tracking-wider transition shadow-sm cursor-pointer disabled:opacity-60"
+                disabled={isGenerating || !selectedDate}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#F97316] hover:bg-[#EA580C] text-white font-black text-xs uppercase tracking-wider transition shadow-sm cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {isGenerating ? (
                   <>
@@ -294,11 +305,6 @@ export function AdminEftPage() {
                 <div>Originator Code: <span className="font-mono text-slate-800">YEBO-ZA-890</span></div>
                 <div>Currency: <span className="font-bold text-slate-800">ZAR South African Rand</span></div>
               </div>
-            </div>
-
-            <div className="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-emerald-800">
-              <CheckCircle2 className="w-4 h-4 inline-block mr-1 text-emerald-600" />
-              Pre-validation passed. All 184 recipient branch codes and account numbers conform to CDV checksums.
             </div>
           </div>
         </AdminModal>

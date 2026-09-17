@@ -54,7 +54,7 @@ export function AdminDashboardPage() {
     { value: 'Last 7 Days', label: 'Last 7 Days' },
     { value: 'Last 30 Days', label: 'Last 30 Days' },
     { value: 'This Month', label: 'This Month' },
-    { value: 'Custom Range', label: 'Custom Range' },
+
   ];
 
   return (

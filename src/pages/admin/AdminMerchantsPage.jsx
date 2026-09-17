@@ -9,6 +9,8 @@ import {
   Check,
   Download,
   Plus,
+  Phone,
+  Mail,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import {
@@ -50,6 +52,7 @@ export function AdminMerchantsPage() {
         merchant.businessName.toLowerCase().includes(searchQuery.toLowerCase()) ||
         merchant.owner.toLowerCase().includes(searchQuery.toLowerCase()) ||
         merchant.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (merchant.email && merchant.email.toLowerCase().includes(searchQuery.toLowerCase())) ||
         merchant.contact.toLowerCase().includes(searchQuery.toLowerCase());
 
       const matchesStatus =
@@ -107,7 +110,28 @@ export function AdminMerchantsPage() {
     {
       header: 'Contact',
       key: 'contact',
-      render: (item) => <span className="text-slate-500 truncate max-w-[150px] block">{item.contact}</span>,
+      render: (item) => (
+        <div className="flex items-center gap-1.5">
+          <Phone className="w-3 h-3 text-slate-400 shrink-0" />
+          <span className="text-slate-600 font-medium whitespace-nowrap">{item.contact}</span>
+        </div>
+      ),
+    },
+    {
+      header: 'Email',
+      key: 'email',
+      render: (item) => (
+        <div className="flex items-center gap-1.5">
+          <Mail className="w-3 h-3 text-slate-400 shrink-0" />
+          <a
+            href={`mailto:${item.email}`}
+            className="text-[#F97316] hover:underline font-medium truncate max-w-[170px] block"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {item.email}
+          </a>
+        </div>
+      ),
     },
     {
       header: 'Status',
@@ -218,7 +242,7 @@ export function AdminMerchantsPage() {
           <div className="flex items-center gap-2">
             <button
               type="button"
-              onClick={() => toast.success('Merchant application form opening (UI Demo)...')}
+              onClick={() => toast.success('Merchant application form opening')}
               className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-[#F97316] hover:bg-[#EA580C] transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
             >
               <Plus className="w-3.5 h-3.5" />
@@ -284,28 +308,28 @@ export function AdminMerchantsPage() {
           confirmDialog.action === 'approve'
             ? 'Approve Merchant Application'
             : confirmDialog.action === 'reject'
-            ? 'Reject Merchant Application'
-            : confirmDialog.action === 'suspend'
-            ? 'Suspend Merchant Account'
-            : 'Reactivate Merchant Account'
+              ? 'Reject Merchant Application'
+              : confirmDialog.action === 'suspend'
+                ? 'Suspend Merchant Account'
+                : 'Reactivate Merchant Account'
         }
         message={
           confirmDialog.action === 'approve'
             ? `Authorize ${confirmDialog.merchant?.businessName} as a live YEBO partner merchant? Their deals will become active.`
             : confirmDialog.action === 'reject'
-            ? `Reject partner application for ${confirmDialog.merchant?.businessName}? An audit notice will be logged.`
-            : confirmDialog.action === 'suspend'
-            ? `Suspend ${confirmDialog.merchant?.businessName}? All QR voucher scans at this location will be temporarily frozen.`
-            : `Restore full trading status for ${confirmDialog.merchant?.businessName}?`
+              ? `Reject partner application for ${confirmDialog.merchant?.businessName}? An audit notice will be logged.`
+              : confirmDialog.action === 'suspend'
+                ? `Suspend ${confirmDialog.merchant?.businessName}? All QR voucher scans at this location will be temporarily frozen.`
+                : `Restore full trading status for ${confirmDialog.merchant?.businessName}?`
         }
         confirmLabel={
           confirmDialog.action === 'approve'
             ? 'Approve Partner'
             : confirmDialog.action === 'reject'
-            ? 'Reject Application'
-            : confirmDialog.action === 'suspend'
-            ? 'Suspend Store'
-            : 'Activate Store'
+              ? 'Reject Application'
+              : confirmDialog.action === 'suspend'
+                ? 'Suspend Store'
+                : 'Activate Store'
         }
       />
     </div>

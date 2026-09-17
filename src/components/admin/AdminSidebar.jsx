@@ -23,9 +23,8 @@ import { Tooltip } from './Tooltip';
 function SidebarHeader({ isCollapsed }) {
   return (
     <div
-      className={`h-16 sm:h-[70px] border-b border-[#f0c2a2] flex items-center shrink-0 transition-all duration-300 ${
-        isCollapsed ? 'justify-center px-2' : 'px-4'
-      }`}
+      className={`h-16 sm:h-[70px] border-b border-[#f0c2a2] flex items-center shrink-0 transition-all duration-300 ${isCollapsed ? 'justify-center px-2' : 'px-4'
+        }`}
     >
       <div className={`flex items-center gap-2.5 overflow-hidden ${isCollapsed ? 'justify-center w-full' : ''}`}>
         <Tooltip
@@ -80,13 +79,12 @@ function SidebarMenuItem({ item, onItemClick, isCollapsed }) {
           <span className="font-bold text-xs tracking-wide text-white">{item.label}</span>
           {item.badge && (
             <span
-              className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
-                item.badgeVariant === 'danger'
+              className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${item.badgeVariant === 'danger'
                   ? 'bg-rose-500 text-white'
                   : item.badgeVariant === 'warning'
-                  ? 'bg-amber-500 text-white'
-                  : 'bg-[#F97316] text-white'
-              }`}
+                    ? 'bg-amber-500 text-white'
+                    : 'bg-[#F97316] text-white'
+                }`}
             >
               {item.badge}
             </span>
@@ -101,37 +99,32 @@ function SidebarMenuItem({ item, onItemClick, isCollapsed }) {
       <NavLink
         to={item.to}
         onClick={onItemClick}
-        className={`flex items-center transition-all duration-150 group relative ${
-          isCollapsed
-            ? `justify-center w-11 h-11 mx-auto rounded-xl ${
-                isActive
-                  ? 'bg-[#F97316] text-white shadow-md font-extrabold'
-                  : 'text-slate-700 hover:bg-white/70 hover:text-slate-900'
-              }`
-            : `gap-3 px-3 py-2.5 rounded-xl text-xs font-bold w-full ${
-                isActive
-                  ? 'bg-[#F97316] text-white shadow-xs font-extrabold'
-                  : 'text-slate-700 hover:bg-white/60 hover:text-slate-900'
-              }`
-        }`}
+        className={`flex items-center transition-all duration-150 group relative ${isCollapsed
+            ? `justify-center w-11 h-11 mx-auto rounded-xl ${isActive
+              ? 'bg-[#F97316] text-white shadow-md font-extrabold'
+              : 'text-slate-700 hover:bg-white/70 hover:text-slate-900'
+            }`
+            : `gap-3 px-3 py-2.5 rounded-xl text-xs font-bold w-full ${isActive
+              ? 'bg-[#F97316] text-white shadow-xs font-extrabold'
+              : 'text-slate-700 hover:bg-white/60 hover:text-slate-900'
+            }`
+          }`}
         aria-label={item.label}
       >
         <Icon
-          className={`shrink-0 transition-transform group-hover:scale-110 ${
-            isCollapsed ? 'w-5 h-5' : 'w-4 h-4'
-          } ${isActive ? 'text-white' : 'text-slate-600 group-hover:text-slate-900'}`}
+          className={`shrink-0 transition-transform group-hover:scale-110 ${isCollapsed ? 'w-5 h-5' : 'w-4 h-4'
+            } ${isActive ? 'text-white' : 'text-slate-600 group-hover:text-slate-900'}`}
         />
 
         {/* In collapsed mode, subtle badge dot if badge exists */}
         {isCollapsed && item.badge && (
           <span
-            className={`absolute top-2 right-2 w-2 h-2 rounded-full ring-2 ring-[#FDDCC5] ${
-              item.badgeVariant === 'danger'
+            className={`absolute top-2 right-2 w-2 h-2 rounded-full ring-2 ring-[#FDDCC5] ${item.badgeVariant === 'danger'
                 ? 'bg-rose-500'
                 : item.badgeVariant === 'warning'
-                ? 'bg-amber-500'
-                : 'bg-[#F97316]'
-            }`}
+                  ? 'bg-amber-500'
+                  : 'bg-[#F97316]'
+              }`}
           />
         )}
 
@@ -141,15 +134,14 @@ function SidebarMenuItem({ item, onItemClick, isCollapsed }) {
 
             {item.badge && (
               <span
-                className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${
-                  item.badgeVariant === 'danger'
+                className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${item.badgeVariant === 'danger'
                     ? 'bg-rose-500 text-white'
                     : item.badgeVariant === 'warning'
-                    ? 'bg-amber-500 text-white'
-                    : isActive
-                    ? 'bg-white/20 text-white'
-                    : 'bg-white/80 text-slate-700 shadow-2xs'
-                }`}
+                      ? 'bg-amber-500 text-white'
+                      : isActive
+                        ? 'bg-white/20 text-white'
+                        : 'bg-white/80 text-slate-700 shadow-2xs'
+                  }`}
               >
                 {item.badge}
               </span>
@@ -170,9 +162,8 @@ function SidebarMenuItem({ item, onItemClick, isCollapsed }) {
 function SidebarMenu({ navItems, onItemClick, isCollapsed }) {
   return (
     <div
-      className={`flex-1 py-3 space-y-1.5 overflow-y-auto scrollbar-none admin-sidebar-scroll transition-all duration-300 ${
-        isCollapsed ? 'px-2' : 'px-3'
-      }`}
+      className={`flex-1 py-3 space-y-1.5 overflow-y-auto scrollbar-none admin-sidebar-scroll transition-all duration-300 ${isCollapsed ? 'px-2' : 'px-3'
+        }`}
     >
       {!isCollapsed ? (
         <div className="px-3 pb-2 text-[10px] font-bold text-slate-500 tracking-wider uppercase select-none">
@@ -201,9 +192,8 @@ function SidebarMenu({ navItems, onItemClick, isCollapsed }) {
 function SidebarFooter({ onLogout, isCollapsed }) {
   return (
     <div
-      className={`border-t border-[#f0c2a2] shrink-0 transition-all duration-300 ${
-        isCollapsed ? 'p-2 flex justify-center' : 'p-3'
-      }`}
+      className={`border-t border-[#f0c2a2] shrink-0 transition-all duration-300 ${isCollapsed ? 'p-2 flex justify-center' : 'p-3'
+        }`}
     >
       <Tooltip
         content={<span className="font-bold text-xs text-rose-300">Sign out of admin session</span>}
@@ -215,17 +205,15 @@ function SidebarFooter({ onLogout, isCollapsed }) {
         <button
           type="button"
           onClick={onLogout}
-          className={`flex items-center justify-center font-bold text-slate-700 hover:text-rose-600 hover:bg-rose-500/10 hover:border-rose-500/20 rounded-xl transition border border-transparent cursor-pointer group ${
-            isCollapsed
+          className={`flex items-center justify-center font-bold text-slate-700 hover:text-rose-600 hover:bg-rose-500/10 hover:border-rose-500/20 rounded-xl transition border border-transparent cursor-pointer group ${isCollapsed
               ? 'w-11 h-11 mx-auto'
               : 'w-full gap-2 py-2 text-xs'
-          }`}
+            }`}
           aria-label="Logout"
         >
           <LogOut
-            className={`text-rose-500 shrink-0 transition-transform group-hover:scale-110 ${
-              isCollapsed ? 'w-5 h-5' : 'w-4 h-4'
-            }`}
+            className={`text-rose-500 shrink-0 transition-transform group-hover:scale-110 ${isCollapsed ? 'w-5 h-5' : 'w-4 h-4'
+              }`}
           />
           {!isCollapsed && <span>Logout</span>}
         </button>
@@ -318,33 +306,29 @@ export function AdminSidebar({
       {/* ─── DESKTOP SIDEBAR (Full w-64 vs Collapsed w-20 with Logo & Icons) ─── */}
       <aside
         aria-label="Admin Navigation Sidebar"
-        className={`hidden md:flex flex-col fixed top-0 left-0 bottom-0 z-40 h-screen border-r border-[#f0c2a2] shadow-sm bg-[#FDDCC5] overflow-hidden select-none transition-all duration-300 ease-in-out ${
-          isDesktopOpen ? 'w-64' : 'w-20'
-        }`}
+        className={`hidden md:flex flex-col fixed top-0 left-0 bottom-0 z-40 h-screen border-r border-[#f0c2a2] shadow-sm bg-[#FDDCC5] overflow-hidden select-none transition-all duration-300 ease-in-out ${isDesktopOpen ? 'w-64' : 'w-20'
+          }`}
       >
         {renderContent(!isDesktopOpen)}
       </aside>
 
       {/* ─── MOBILE DRAWER & BACKDROP OVERLAY ─── */}
       <div
-        className={`md:hidden fixed inset-0 z-50 transition-visibility duration-300 ${
-          isMobileOpen ? 'pointer-events-auto' : 'pointer-events-none'
-        }`}
+        className={`md:hidden fixed inset-0 z-50 transition-visibility duration-300 ${isMobileOpen ? 'pointer-events-auto' : 'pointer-events-none'
+          }`}
         aria-hidden={!isMobileOpen}
       >
         {/* Semi-transparent Backdrop Overlay */}
         <div
           onClick={onCloseMobile}
-          className={`fixed inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity duration-300 ${
-            isMobileOpen ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`fixed inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity duration-300 ${isMobileOpen ? 'opacity-100' : 'opacity-0'
+            }`}
         />
 
         {/* Slide-in Mobile Drawer */}
         <div
-          className={`relative w-72 max-w-[85vw] h-full z-10 shadow-2xl transition-transform duration-300 ease-in-out bg-[#FDDCC5] ${
-            isMobileOpen ? 'translate-x-0' : '-translate-x-full'
-          }`}
+          className={`relative w-72 max-w-[85vw] h-full z-10 shadow-2xl transition-transform duration-300 ease-in-out bg-[#FDDCC5] ${isMobileOpen ? 'translate-x-0' : '-translate-x-full'
+            }`}
         >
           {renderContent(false)}
         </div>
