@@ -71,13 +71,15 @@ export function AdminPaymentsPage() {
     {
       header: 'Transaction ID',
       key: 'id',
-      render: (item) => <span className="font-mono font-bold text-[#0c1844]">{item.id}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-mono font-bold text-[#0c1844] whitespace-nowrap">{item.id}</span>,
     },
     {
       header: 'User',
       key: 'user',
+      cellClassName: 'whitespace-nowrap',
       render: (item) => (
-        <div>
+        <div className="whitespace-nowrap">
           <span className="font-bold text-slate-800">{item.user}</span>
           <span className="text-[10px] text-slate-400 block truncate">{item.userEmail}</span>
         </div>
@@ -86,41 +88,48 @@ export function AdminPaymentsPage() {
     {
       header: 'Merchant',
       key: 'merchant',
-      render: (item) => <span className="font-semibold text-slate-700">{item.merchant}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-semibold text-slate-700 whitespace-nowrap">{item.merchant}</span>,
     },
     {
       header: 'Amount',
       key: 'amount',
-      render: (item) => <span className="font-black text-slate-900">{item.amount}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-black text-slate-900 whitespace-nowrap">{item.amount}</span>,
     },
     {
       header: 'Payment Method',
       key: 'paymentMethod',
-      render: (item) => <span className="font-medium text-slate-600">{item.paymentMethod}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-medium text-slate-600 whitespace-nowrap">{item.paymentMethod}</span>,
     },
     {
       header: 'Gateway Reference',
       key: 'gatewayReference',
-      render: (item) => <span className="font-mono text-[11px] text-slate-500">{item.gatewayReference}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-mono text-[11px] text-slate-500 whitespace-nowrap">{item.gatewayReference}</span>,
     },
     {
       header: 'Status',
       key: 'status',
+      cellClassName: 'whitespace-nowrap',
       render: (item) => <StatusBadge status={item.status} />,
     },
     {
       header: 'Date',
       key: 'date',
-      render: (item) => <span className="text-slate-500 font-mono text-[11px]">{item.date}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="text-slate-500 font-mono text-[11px] whitespace-nowrap">{item.date}</span>,
     },
     {
       header: 'Action',
       key: 'action',
+      cellClassName: 'whitespace-nowrap',
       render: (item) => (
         <button
           type="button"
           onClick={() => setSelectedReceiptTxn(item)}
-          className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-bold text-[#F97316] hover:bg-orange-50 rounded-lg transition"
+          className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-bold text-[#F97316] hover:bg-orange-50 rounded-lg transition whitespace-nowrap"
         >
           <Receipt className="w-3.5 h-3.5" />
           <span>Receipt</span>
@@ -134,33 +143,39 @@ export function AdminPaymentsPage() {
     {
       header: 'Event ID',
       key: 'eventId',
-      render: (item) => <span className="font-mono font-bold text-[#0c1844]">{item.eventId}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-mono font-bold text-[#0c1844] whitespace-nowrap">{item.eventId}</span>,
     },
     {
       header: 'Transaction ID',
       key: 'transactionId',
-      render: (item) => <span className="font-mono text-slate-600">{item.transactionId}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-mono text-slate-600 whitespace-nowrap">{item.transactionId}</span>,
     },
     {
       header: 'User',
       key: 'user',
-      render: (item) => <span className="font-bold text-slate-800">{item.user}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-bold text-slate-800 whitespace-nowrap">{item.user}</span>,
     },
     {
       header: 'Merchant',
       key: 'merchant',
-      render: (item) => <span className="font-semibold text-slate-700">{item.merchant}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-semibold text-slate-700 whitespace-nowrap">{item.merchant}</span>,
     },
     {
       header: 'Amount',
       key: 'amount',
-      render: (item) => <span className="font-bold text-slate-900">{item.amount}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-bold text-slate-900 whitespace-nowrap">{item.amount}</span>,
     },
     {
       header: 'Event Count',
       key: 'eventCount',
+      cellClassName: 'whitespace-nowrap',
       render: (item) => (
-        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-black bg-[#FFF4EC] text-[#C2410C] border border-[#f0c2a2] shadow-2xs">
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-black bg-[#FFF4EC] text-[#C2410C] border border-[#f0c2a2] shadow-2xs whitespace-nowrap">
           {item.eventCount}x Duplicate
         </span>
       ),
@@ -168,18 +183,21 @@ export function AdminPaymentsPage() {
     {
       header: 'Original Event',
       key: 'originalEvent',
-      render: (item) => <span className="font-mono text-[11px] text-slate-500">{item.originalEvent}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-mono text-[11px] text-slate-500 whitespace-nowrap">{item.originalEvent}</span>,
     },
     {
       header: 'Duplicate Event',
       key: 'duplicateEvent',
-      render: (item) => <span className="font-mono text-[11px] text-[#C2410C] font-semibold">{item.duplicateEvent}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-mono text-[11px] text-[#C2410C] font-semibold whitespace-nowrap">{item.duplicateEvent}</span>,
     },
     {
       header: 'Status',
       key: 'status',
+      cellClassName: 'whitespace-nowrap',
       render: (item) => (
-        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-orange-50 text-orange-900 border border-orange-200/90 shadow-2xs">
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-orange-50 text-orange-900 border border-orange-200/90 shadow-2xs whitespace-nowrap">
           <span className="w-1.5 h-1.5 rounded-full bg-[#F97316] shrink-0" />
           DUPLICATE BLOCKED
         </span>
@@ -188,11 +206,12 @@ export function AdminPaymentsPage() {
     {
       header: 'Action',
       key: 'action',
+      cellClassName: 'whitespace-nowrap',
       render: (item) => (
         <button
           type="button"
           onClick={() => setSelectedDuplicateEvent(item)}
-          className="p-1.5 text-slate-600 hover:text-[#F97316] hover:bg-orange-50 rounded-lg transition cursor-pointer"
+          className="p-1.5 text-slate-600 hover:text-[#F97316] hover:bg-orange-50 rounded-lg transition cursor-pointer whitespace-nowrap"
           title="Inspect Event"
         >
           <Info className="w-4 h-4" />
@@ -206,33 +225,39 @@ export function AdminPaymentsPage() {
     {
       header: 'Event ID',
       key: 'eventId',
-      render: (item) => <span className="font-mono font-bold text-[#0c1844]">{item.eventId}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-mono font-bold text-[#0c1844] whitespace-nowrap">{item.eventId}</span>,
     },
     {
       header: 'Transaction ID',
       key: 'transactionId',
-      render: (item) => <span className="font-mono text-slate-600">{item.transactionId}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-mono text-slate-600 whitespace-nowrap">{item.transactionId}</span>,
     },
     {
       header: 'User',
       key: 'user',
-      render: (item) => <span className="font-bold text-slate-800">{item.user}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-bold text-slate-800 whitespace-nowrap">{item.user}</span>,
     },
     {
       header: 'Merchant',
       key: 'merchant',
-      render: (item) => <span className="font-semibold text-slate-700">{item.merchant}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-semibold text-slate-700 whitespace-nowrap">{item.merchant}</span>,
     },
     {
       header: 'Amount',
       key: 'amount',
-      render: (item) => <span className="font-bold text-slate-900">{item.amount}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-bold text-slate-900 whitespace-nowrap">{item.amount}</span>,
     },
     {
       header: 'Failure Reason',
       key: 'failureReason',
+      cellClassName: 'whitespace-nowrap',
       render: (item) => (
-        <span className="text-[#C2410C] font-bold text-xs bg-[#FFF4EC] border border-[#f0c2a2]/80 px-2.5 py-1 rounded-lg inline-block shadow-2xs">
+        <span className="text-[#C2410C] font-bold text-xs bg-[#FFF4EC] border border-[#f0c2a2]/80 px-2.5 py-1 rounded-lg inline-block shadow-2xs whitespace-nowrap">
           {item.failureReason}
         </span>
       ),
@@ -240,8 +265,9 @@ export function AdminPaymentsPage() {
     {
       header: 'Gateway Response',
       key: 'gatewayResponse',
+      cellClassName: 'whitespace-nowrap',
       render: (item) => (
-        <span className="text-slate-500 text-[11px] truncate max-w-[200px] block">
+        <span className="text-slate-500 text-[11px] whitespace-nowrap">
           {item.gatewayResponse}
         </span>
       ),
@@ -249,8 +275,9 @@ export function AdminPaymentsPage() {
     {
       header: 'Status',
       key: 'status',
+      cellClassName: 'whitespace-nowrap',
       render: (item) => (
-        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-orange-50 text-orange-900 border border-orange-200/90 shadow-2xs">
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-orange-50 text-orange-900 border border-orange-200/90 shadow-2xs whitespace-nowrap">
           <span className="w-1.5 h-1.5 rounded-full bg-[#F97316] shrink-0" />
           FAILED / ERROR
         </span>
@@ -259,11 +286,12 @@ export function AdminPaymentsPage() {
     {
       header: 'Action',
       key: 'action',
+      cellClassName: 'whitespace-nowrap',
       render: (item) => (
         <button
           type="button"
           onClick={() => setSelectedFailedEvent(item)}
-          className="p-1.5 text-slate-600 hover:text-[#F97316] hover:bg-orange-50 rounded-lg transition cursor-pointer"
+          className="p-1.5 text-slate-600 hover:text-[#F97316] hover:bg-orange-50 rounded-lg transition cursor-pointer whitespace-nowrap"
           title="Inspect Failure"
         >
           <Info className="w-4 h-4" />
@@ -393,24 +421,11 @@ export function AdminPaymentsPage() {
       {/* 3. Tab Content: Duplicate Events */}
       {activeTab === 'duplicates' && (
         <div className="space-y-4">
-          <div className="bg-gradient-to-r from-orange-50/90 via-[#FFF4EC] to-amber-50/50 border border-[#f0c2a2] rounded-2xl p-4 flex items-start gap-3.5 shadow-2xs">
-            <Layers className="w-5 h-5 text-[#F97316] shrink-0 mt-0.5" />
-            <div>
-              <h4 className="text-xs font-black text-slate-900 uppercase tracking-wider flex items-center gap-2">
-                <span>IDEMPOTENCY SAFEGUARD ACTIVE</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#F97316]" />
-              </h4>
-              <p className="text-xs text-slate-600 mt-0.5 leading-relaxed">
-                Duplicate webhooks and concurrent QR redemptions within 1,000ms window are automatically intercepted and quarantined to safeguard user ledger balance.
-              </p>
-            </div>
-          </div>
-
           <DataTable
             columns={duplicateColumns}
             data={mockDuplicateEvents}
             keyField="eventId"
-            minWidth="920px"
+            minWidth="1280px"
           />
         </div>
       )}
@@ -418,134 +433,127 @@ export function AdminPaymentsPage() {
       {/* 4. Tab Content: Failed Events */}
       {activeTab === 'failed' && (
         <div className="space-y-4">
-          <div className="bg-gradient-to-r from-orange-50/90 via-[#FFF4EC] to-amber-50/50 border border-[#f0c2a2] rounded-2xl p-4 flex items-start gap-3.5 shadow-2xs">
-            <AlertTriangle className="w-5 h-5 text-[#F97316] shrink-0 mt-0.5" />
-            <div>
-              <h4 className="text-xs font-black text-slate-900 uppercase tracking-wider flex items-center gap-2">
-                <span>TRANSACTION EXCEPTION MONITOR</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#F97316]" />
-              </h4>
-              <p className="text-xs text-slate-600 mt-0.5 leading-relaxed">
-                Displays real-time PayFast gateway declines, 3D secure timeouts, and insufficient fund rejections with raw bank diagnostic codes.
-              </p>
-            </div>
-          </div>
-
           <DataTable
             columns={failedColumns}
             data={mockFailedEvents}
             keyField="eventId"
-            minWidth="920px"
+            minWidth="1200px"
           />
         </div>
       )}
 
       {/* YEBO Payment Receipt Modal */}
-      {selectedReceiptTxn && (
-        <ReceiptModal
-          isOpen={Boolean(selectedReceiptTxn)}
-          onClose={() => setSelectedReceiptTxn(null)}
-          transaction={selectedReceiptTxn}
-          onPrint={(t) => {
-            toast.success(`Opening print dialogue for ${t.receiptId}...`);
-            window.print();
-          }}
-          onDownload={(t) => {
-            toast.success(`Downloaded ${t.receiptId}.pdf (UI simulation).`);
-          }}
-        />
-      )}
+      {
+        selectedReceiptTxn && (
+          <ReceiptModal
+            isOpen={Boolean(selectedReceiptTxn)}
+            onClose={() => setSelectedReceiptTxn(null)}
+            transaction={selectedReceiptTxn}
+            onPrint={(t) => {
+              toast.success(`Opening print dialogue for ${t.receiptId}...`);
+              window.print();
+            }}
+            onDownload={(t) => {
+              toast.success(`Downloaded ${t.receiptId}.pdf (UI simulation).`);
+            }}
+          />
+        )
+      }
 
       {/* Duplicate Event Details Modal */}
-      {selectedDuplicateEvent && (
-        <AdminModal
-          isOpen={Boolean(selectedDuplicateEvent)}
-          onClose={() => setSelectedDuplicateEvent(null)}
-          title={`Duplicate Event: ${selectedDuplicateEvent.eventId}`}
-          subtitle="Idempotent replay interception audit"
-          icon={Layers}
-          iconBg="bg-orange-100 text-[#F97316]"
-          footer={
-            <button
-              type="button"
-              onClick={() => setSelectedDuplicateEvent(null)}
-              className="px-4 py-2 text-xs font-bold text-white bg-[#0c1844] hover:bg-[#071131] rounded-xl transition cursor-pointer"
-            >
-              Close
-            </button>
-          }
-        >
-          <div className="space-y-3 text-xs">
-            <div className="p-3 bg-[#FFF4EC] rounded-xl border border-[#f0c2a2] text-slate-900">
-              <span className="font-bold text-[#C2410C]">Summary: </span>
-              <span className="font-medium text-slate-800">{selectedDuplicateEvent.details}</span>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3">
-              <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                <span className="text-[10px] uppercase font-bold text-slate-400">Original Request</span>
-                <p className="font-mono text-slate-800 font-bold mt-0.5">{selectedDuplicateEvent.originalEvent}</p>
+      {
+        selectedDuplicateEvent && (
+          <AdminModal
+            isOpen={Boolean(selectedDuplicateEvent)}
+            onClose={() => setSelectedDuplicateEvent(null)}
+            title={`Duplicate Event: ${selectedDuplicateEvent.eventId}`}
+            subtitle="Idempotent replay interception audit"
+            icon={Layers}
+            iconBg="bg-orange-100 text-[#F97316]"
+            footer={
+              <button
+                type="button"
+                onClick={() => setSelectedDuplicateEvent(null)}
+                className="px-4 py-2 text-xs font-bold text-white bg-[#0c1844] hover:bg-[#071131] rounded-xl transition cursor-pointer"
+              >
+                Close
+              </button>
+            }
+          >
+            <div className="space-y-3 text-xs">
+              <div className="p-3 bg-[#FFF4EC] rounded-xl border border-[#f0c2a2] text-slate-900">
+                <span className="font-bold text-[#C2410C]">Summary: </span>
+                <span className="font-medium text-slate-800">{selectedDuplicateEvent.details}</span>
               </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                  <span className="text-[10px] uppercase font-bold text-slate-400">Original Request</span>
+                  <p className="font-mono text-slate-800 font-bold mt-0.5">{selectedDuplicateEvent.originalEvent}</p>
+                </div>
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                  <span className="text-[10px] uppercase font-bold text-slate-400">Duplicate Intercept</span>
+                  <p className="font-mono text-[#C2410C] font-bold mt-0.5">{selectedDuplicateEvent.duplicateEvent}</p>
+                </div>
+              </div>
+
               <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                <span className="text-[10px] uppercase font-bold text-slate-400">Duplicate Intercept</span>
-                <p className="font-mono text-[#C2410C] font-bold mt-0.5">{selectedDuplicateEvent.duplicateEvent}</p>
+                <span className="text-[10px] uppercase font-bold text-slate-400">Resolution</span>
+                <p className="text-slate-700 mt-0.5">
+                  The duplicate payment packet was safely dropped. No multiple debit occurred on user {selectedDuplicateEvent.user}.
+                </p>
               </div>
             </div>
-
-            <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-              <span className="text-[10px] uppercase font-bold text-slate-400">Resolution</span>
-              <p className="text-slate-700 mt-0.5">
-                The duplicate payment packet was safely dropped. No multiple debit occurred on user {selectedDuplicateEvent.user}.
-              </p>
-            </div>
-          </div>
-        </AdminModal>
-      )}
+          </AdminModal>
+        )
+      }
 
       {/* Failed Event Details Modal */}
-      {selectedFailedEvent && (
-        <AdminModal
-          isOpen={Boolean(selectedFailedEvent)}
-          onClose={() => setSelectedFailedEvent(null)}
-          title={`Failed Event: ${selectedFailedEvent.eventId}`}
-          subtitle="Gateway rejection analysis & payload"
-          icon={AlertTriangle}
-          iconBg="bg-orange-100 text-[#F97316]"
-          footer={
-            <button
-              type="button"
-              onClick={() => setSelectedFailedEvent(null)}
-              className="px-4 py-2 text-xs font-bold text-white bg-[#0c1844] hover:bg-[#071131] rounded-xl transition cursor-pointer"
-            >
-              Dismiss
-            </button>
-          }
-        >
-          <div className="space-y-3 text-xs">
-            <div className="p-3 bg-[#FFF4EC] rounded-xl border border-[#f0c2a2] text-slate-900">
-              <span className="font-bold text-[#C2410C]">Error Reason: </span>
-              <span className="font-semibold text-slate-800">{selectedFailedEvent.failureReason}</span>
-            </div>
-
-            <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-              <span className="text-[10px] uppercase font-bold text-slate-400">Bank Response</span>
-              <p className="text-slate-800 font-semibold mt-1">{selectedFailedEvent.gatewayResponse}</p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3">
-              <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                <span className="text-[10px] uppercase font-bold text-slate-400">Customer</span>
-                <p className="text-slate-800 font-bold mt-0.5">{selectedFailedEvent.user}</p>
+      {
+        selectedFailedEvent && (
+          <AdminModal
+            isOpen={Boolean(selectedFailedEvent)}
+            onClose={() => setSelectedFailedEvent(null)}
+            title={`Failed Event: ${selectedFailedEvent.eventId}`}
+            subtitle="Gateway rejection analysis & payload"
+            icon={AlertTriangle}
+            iconBg="bg-orange-100 text-[#F97316]"
+            footer={
+              <button
+                type="button"
+                onClick={() => setSelectedFailedEvent(null)}
+                className="px-4 py-2 text-xs font-bold text-white bg-[#0c1844] hover:bg-[#071131] rounded-xl transition cursor-pointer"
+              >
+                Dismiss
+              </button>
+            }
+          >
+            <div className="space-y-3 text-xs">
+              <div className="p-3 bg-[#FFF4EC] rounded-xl border border-[#f0c2a2] text-slate-900">
+                <span className="font-bold text-[#C2410C]">Error Reason: </span>
+                <span className="font-semibold text-slate-800">{selectedFailedEvent.failureReason}</span>
               </div>
+
               <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                <span className="text-[10px] uppercase font-bold text-slate-400">Merchant</span>
-                <p className="text-slate-800 font-bold mt-0.5">{selectedFailedEvent.merchant}</p>
+                <span className="text-[10px] uppercase font-bold text-slate-400">Bank Response</span>
+                <p className="text-slate-800 font-semibold mt-1">{selectedFailedEvent.gatewayResponse}</p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                  <span className="text-[10px] uppercase font-bold text-slate-400">Customer</span>
+                  <p className="text-slate-800 font-bold mt-0.5">{selectedFailedEvent.user}</p>
+                </div>
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                  <span className="text-[10px] uppercase font-bold text-slate-400">Merchant</span>
+                  <p className="text-slate-800 font-bold mt-0.5">{selectedFailedEvent.merchant}</p>
+                </div>
               </div>
             </div>
-          </div>
-        </AdminModal>
-      )}
-    </div>
+          </AdminModal>
+        )
+      }
+    </div >
   );
 }
 

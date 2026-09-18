@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
   ArrowLeft,
@@ -27,7 +27,20 @@ export function AdminMerchantDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const merchant = mockMerchants.find((m) => m.id === id) || mockMerchants[0];
+  const merchant = useMemo(() => {
+    try {
+      const saved = localStorage.getItem('yebo_admin_merchants');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          const found = parsed.find((m) => m.id === id);
+          if (found) return found;
+        }
+      }
+    } catch {}
+    return mockMerchants.find((m) => m.id === id) || mockMerchants[0];
+  }, [id]);
+
   const [activeTab, setActiveTab] = useState('business'); // 'business' | 'deals' | 'staff' | 'transactions'
   const [currentStatus, setCurrentStatus] = useState(merchant.status);
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -42,6 +55,12 @@ export function AdminMerchantDetailPage() {
   const handleStatusToggle = () => {
     const nextStatus = currentStatus === 'Active' ? 'Suspended' : 'Active';
     setCurrentStatus(nextStatus);
+    try {
+      const saved = localStorage.getItem('yebo_admin_merchants');
+      const list = saved ? JSON.parse(saved) : mockMerchants;
+      const updated = list.map((m) => (m.id === merchant.id ? { ...m, status: nextStatus } : m));
+      localStorage.setItem('yebo_admin_merchants', JSON.stringify(updated));
+    } catch {}
     toast.success(`Merchant status updated to ${nextStatus}.`);
     setConfirmOpen(false);
   };

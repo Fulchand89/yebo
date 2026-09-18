@@ -91,29 +91,34 @@ export function AdminCommissionPage() {
     {
       header: 'Ledger ID',
       key: 'ledgerId',
-      render: (item) => <span className="font-mono font-bold text-[#0c1844]">{item.ledgerId}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-mono font-bold text-[#0c1844] whitespace-nowrap">{item.ledgerId}</span>,
     },
     {
       header: 'Type',
       key: 'type',
-      render: (item) => <span className="font-bold text-slate-800">{item.type}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-bold text-slate-800 whitespace-nowrap">{item.type}</span>,
     },
     {
       header: 'User / Merchant',
       key: 'entity',
-      render: (item) => <span className="font-semibold text-slate-700">{item.entity}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-semibold text-slate-700 whitespace-nowrap">{item.entity}</span>,
     },
     {
       header: 'Transaction ID',
       key: 'transactionId',
-      render: (item) => <span className="font-mono text-slate-500 text-[11px]">{item.transactionId}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-mono text-slate-500 text-[11px] whitespace-nowrap">{item.transactionId}</span>,
     },
     {
       header: 'Amount',
       key: 'amount',
+      cellClassName: 'whitespace-nowrap',
       render: (item) => (
         <span
-          className={`font-black ${item.amount.startsWith('+') ? 'text-emerald-600' : 'text-slate-900'
+          className={`font-black whitespace-nowrap ${item.amount.startsWith('+') ? 'text-emerald-600' : 'text-slate-900'
             }`}
         >
           {item.amount}
@@ -123,13 +128,15 @@ export function AdminCommissionPage() {
     {
       header: 'Date',
       key: 'date',
-      render: (item) => <span className="font-mono text-slate-500 text-[11px]">{item.date}</span>,
+      cellClassName: 'whitespace-nowrap',
+      render: (item) => <span className="font-mono text-slate-500 text-[11px] whitespace-nowrap">{item.date}</span>,
     },
     {
       header: 'Source Receipt',
       key: 'sourceReceipt',
+      cellClassName: 'whitespace-nowrap',
       render: (item) => (
-        <span className="font-mono text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md font-bold">
+        <span className="font-mono text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md font-bold whitespace-nowrap">
           {item.sourceReceipt}
         </span>
       ),
@@ -137,16 +144,18 @@ export function AdminCommissionPage() {
     {
       header: 'Status',
       key: 'status',
+      cellClassName: 'whitespace-nowrap',
       render: (item) => <StatusBadge status={item.status} />,
     },
     {
       header: 'Action',
       key: 'action',
+      cellClassName: 'whitespace-nowrap',
       render: (item) => (
         <button
           type="button"
           onClick={() => setInspectEntry(item)}
-          className="p-1.5 text-slate-600 hover:text-[#F97316] hover:bg-orange-50 rounded-lg transition"
+          className="p-1.5 text-slate-600 hover:text-[#F97316] hover:bg-orange-50 rounded-lg transition whitespace-nowrap"
           title="Inspect Ledger Entry"
         >
           <Eye className="w-4 h-4" />
@@ -295,7 +304,7 @@ export function AdminCommissionPage() {
         data={paginatedData}
         keyField="ledgerId"
         emptyTitle="No commission records found"
-        minWidth="850px"
+        minWidth="1150px"
       />
 
       {/* Pagination */}
